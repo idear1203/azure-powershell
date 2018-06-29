@@ -105,7 +105,8 @@ CmdletsToExport = 'Get-AzureRmDataLakeAnalyticsDataSource',
                'Update-AzureRmDataLakeAnalyticsComputePolicy', 
                'Remove-AzureRmDataLakeAnalyticsComputePolicy', 
                'Get-AzureRmDataLakeAnalyticsJobPipeline', 
-               'Get-AzureRmDataLakeAnalyticsJobRecurrence'
+               'Get-AzureRmDataLakeAnalyticsJobRecurrence',
+               'Submit-AzureRmDataLakeAnalyticsUsqlDatabasePackage'
 
 # Variables to export from this module
 # VariablesToExport = @()
@@ -126,7 +127,7 @@ AliasesToExport = 'Get-AdlAnalyticsDataSource', 'New-AdlCatalogCredential',
                'New-AdlAnalyticsComputePolicy', 'Get-AdlAnalyticsComputePolicy', 
                'Update-AdlAnalyticsComputePolicy', 
                'Remove-AdlAnalyticsComputePolicy', 'Get-AdlJobPipeline', 
-               'Get-AdlJobRecurrence'
+               'Get-AdlJobRecurrence', 'Submit-AdlUsqlDbPackage'
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()

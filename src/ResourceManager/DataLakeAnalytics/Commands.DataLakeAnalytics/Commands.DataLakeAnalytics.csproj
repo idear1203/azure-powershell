@@ -36,13 +36,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Analytics.CICD.Deploy.ClusterOperator">
+      <HintPath>..\..\..\packages\Microsoft.Azure.DataLake.USQL.SDK.1.3.180615\build\runtime\Microsoft.Analytics.CICD.Deploy.ClusterOperator.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Analytics.CICD.Deploy.Framework">
+      <HintPath>..\..\..\packages\Microsoft.Azure.DataLake.USQL.SDK.1.3.180615\build\runtime\Microsoft.Analytics.CICD.Deploy.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Analytics.CICD.Deploy.Interface">
+      <HintPath>..\..\..\packages\Microsoft.Azure.DataLake.USQL.SDK.1.3.180615\build\runtime\Microsoft.Analytics.CICD.Deploy.Interface.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Azure.Management.DataLake.Analytics, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\Microsoft.Azure.Management.DataLake.Analytics.3.3.0-preview\lib\net452\Microsoft.Azure.Management.DataLake.Analytics.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Azure.Management.DataLake.Store">
+      <HintPath>..\..\..\packages\Microsoft.Azure.Management.DataLake.Store.2.2.1\lib\net452\Microsoft.Azure.Management.DataLake.Store.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\SubmitAzureRmDataLakeAnalyticsUsqlDatabasePackage.cs" />
     <Compile Include="Commands\GetAzureRmDataLakeAnalyticsCatalogItemAclEntry.cs" />
     <Compile Include="Commands\GetAzureRmDataLakeAnalyticsJobRecurrence.cs" />
     <Compile Include="Commands\GetAzureRmDataLakeAnalyticsJobPipeline.cs" />

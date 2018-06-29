@@ -24,7 +24,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Net;
+using System.Threading;
+using Microsoft.Analytics.CICD.Deploy;
+using Microsoft.Azure.Commands.Common.Authentication;
 using Microsoft.Azure.Management.DataLake.Analytics;
+using Microsoft.Azure.Management.DataLake.Store;
 
 namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
 {
@@ -33,6 +37,7 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
         private readonly DataLakeAnalyticsAccountManagementClient _accountClient;
         private readonly DataLakeAnalyticsCatalogManagementClient _catalogClient;
         private readonly DataLakeAnalyticsJobManagementClient _jobClient;
+        private readonly DataLakeStoreFileSystemManagementClient _fileSystemClient;
         private readonly Guid _subscriptionId;
         private static Queue<Guid> jobIdQueue;
 
@@ -73,6 +78,10 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
 
             _catalogClient = DataLakeAnalyticsCmdletBase.CreateAdlaClient<DataLakeAnalyticsCatalogManagementClient>(context,
                 AzureEnvironment.Endpoint.AzureDataLakeAnalyticsCatalogAndJobEndpointSuffix, true);
+
+            var adlCreds = AzureSession.Instance.AuthenticationFactory.GetServiceClientCredentials(context,
+                AzureEnvironment.Endpoint.AzureDataLakeAnalyticsCatalogAndJobEndpointSuffix);
+            _fileSystemClient = new DataLakeStoreFileSystemManagementClient(adlCreds);
         }
 
         #region Account Related Operations
@@ -937,6 +946,19 @@ namespace Microsoft.Azure.Commands.DataLakeAnalytics.Models
 
                     default: throw new ArgumentException($"ACL operations are unsupported for catatlog item type: {itemType}");
                 }
+            }
+        }
+
+        public void SubmitUsqlDatabsePackage(string resourceGroupName, string accountName, string jobPrefix, string packagePath, string targetDatabase, string workDir = null, bool? forceOverwrite = false)
+        {
+            var account = GetAccount(resourceGroupName, accountName);
+            var opr = new ClusterOperator(account, _fileSystemClient, _jobClient, workDir, jobPrefix);
+            var deployCts = new CancellationTokenSource();
+
+            using (var frame = new Package(opr))
+            {
+                frame.Initialize(packagePath, deployCts.Token, workDir);
+                frame.Deploy(deployCts.Token, targetDatabase, false, forceOverwrite);
             }
         }
 

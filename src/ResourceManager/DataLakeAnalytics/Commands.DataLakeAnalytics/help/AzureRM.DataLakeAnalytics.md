@@ -101,6 +101,9 @@ Cancels a job.
 ### [Submit-AzureRmDataLakeAnalyticsJob](Submit-AzureRmDataLakeAnalyticsJob.md)
 Submits a job.
 
+### [Submit-AzureRmDataLakeAnalyticsUsqlDatabasePackage](Submit-AzureRmDataLakeAnalyticsUsqlDatabasePackage.md)
+Submits a U-SQL database deployment package.
+
 ### [Test-AzureRmDataLakeAnalyticsAccount](Test-AzureRmDataLakeAnalyticsAccount.md)
 Checks for the existence of a Data Lake Analytics account.
 
