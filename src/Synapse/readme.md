@@ -50,25 +50,24 @@ In this directory, run AutoRest:
 require:
   - $(this-folder)/../readme.azure.md
   - $(repo)/specification/synapse/resource-manager/readme.md
+  - $(repo)/specification/synapse/data-plane/readme.md
 
 title: Synapse
 module-version: 0.0.1
+```
 
+``` yaml
 directive:
   # Rename cmdlets to following PowerShell Naming rules
   # If your cmdlet is performing a PUT operation (i.e., a full replacement on the server), the cmdlet should use the verb Set
-  - where:
-      verb: Set
-      subject: BigDataPool
-    remove: true
-  - where:
-      verb: Set
-      subject: WorkSpace
-    remove: true
-  - where:
-      verb: Set
-      subject: SqlPool
-    remove: true
+  #- where:
+  #    verb: Set
+  #    subject: BigDataPool
+  #  remove: true
+  #- where:
+  #    verb: Set
+  #    subject: WorkSpace
+  #  remove: true
   # POST operation should use verb Set
   - where:
       verb: Update
@@ -132,4 +131,30 @@ directive:
       verb: Test
       variant: ^Check$|^CheckViaIdentity$|^CheckViaIdentityExpanded$
     remove: true
+  # Format output
+  - where:
+      model-name: GenericResource
+    set:
+      format-table:
+        properties:
+          - Name
+          - ResourceGroupName
+          - Type
+          - Location
+        labels:
+          Type: ResourceType
+  # Format output
+  - where:
+      model-name: Workspace
+    set:
+      format-table:
+        properties:
+          - Name
+          - ResourceGroupName
+          - Location
+          - DataLakeStorageAccountDetails
+          - DefaultDataLakeStorageAccountUrl
+          - DefaultDataLakeStorageFilesystem
+          - SqlAdministratorLogin
+          - ProvisioningState
 ```
