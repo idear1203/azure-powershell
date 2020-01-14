@@ -11,7 +11,7 @@
   DotNetFrameworkVersion = '4.7.2'
   RequiredAssemblies = './bin/Az.Synapse.private.dll'
   FormatsToProcess = './Az.Synapse.format.ps1xml'
-  CmdletsToExport = 'Get-AzSynapseBigDataPool', 'Get-AzSynapseSqlPool', 'Get-AzSynapseWorkspace', 'New-AzSynapseBigDataPool', 'New-AzSynapseSqlPool', 'New-AzSynapseWorkspace', 'Remove-AzSynapseBigDataPool', 'Remove-AzSynapseSqlPool', 'Remove-AzSynapseWorkspace', 'Resume-AzSynapseSqlPool', 'Suspend-AzSynapseSqlPool', 'Update-AzSynapseBigDataPool', 'Update-AzSynapseWorkspace', '*'
+  CmdletsToExport = 'Get-AzSynapseBigDataPool', 'Get-AzSynapseSqlPool', 'Get-AzSynapseWorkspace', 'New-AzSynapseBigDataPool', 'New-AzSynapseSqlPool', 'New-AzSynapseWorkspace', 'Remove-AzSynapseBigDataPool', 'Remove-AzSynapseSqlPool', 'Remove-AzSynapseWorkspace', 'Resume-AzSynapseSqlPool', 'Set-AzSynapseBigDataPool', 'Set-AzSynapseWorkspace', 'Suspend-AzSynapseSqlPool', 'Update-AzSynapseBigDataPool', 'Update-AzSynapseWorkspace', '*'
   AliasesToExport = '*'
   PrivateData = @{
     PSData = @{

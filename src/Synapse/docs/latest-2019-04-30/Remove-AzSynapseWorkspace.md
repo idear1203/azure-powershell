@@ -35,7 +35,7 @@ PS C:\> Remove-AzSynapseWorkspace -Name ContosoWorkspace -ResourceGroupName Cont
 
 ```
 
-This command removes a Synapse workspace named ContosoWorkspace , in the resource group named ContosoResourceGroup
+This command removes a Synapse workspace named ContosoWorkspace, in the resource group named ContosoResourceGroup
 
 ## PARAMETERS
 

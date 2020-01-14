@@ -41,6 +41,12 @@ Deletes a workspace
 ### [Resume-AzSynapseSqlPool](Resume-AzSynapseSqlPool.md)
 Resume a SQL pool
 
+### [Set-AzSynapseBigDataPool](Set-AzSynapseBigDataPool.md)
+Create a new Big Data pool.
+
+### [Set-AzSynapseWorkspace](Set-AzSynapseWorkspace.md)
+Creates or updates a workspace
+
 ### [Suspend-AzSynapseSqlPool](Suspend-AzSynapseSqlPool.md)
 Pause a SQL pool
 
