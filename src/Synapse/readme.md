@@ -59,15 +59,15 @@ module-version: 0.0.1
 ``` yaml
 directive:
   # Rename cmdlets to following PowerShell Naming rules
-  # If your cmdlet is performing a PUT operation (i.e., a full replacement on the server), the cmdlet should use the verb Set
-  #- where:
-  #    verb: Set
-  #    subject: BigDataPool
-  #  remove: true
-  #- where:
-  #    verb: Set
-  #    subject: WorkSpace
-  #  remove: true
+  # TODO: add resource partial update feature to Update commands
+  - where:
+      verb: Set
+      subject: BigDataPool
+    remove: true
+  - where:
+      verb: Set
+      subject: WorkSpace
+    remove: true
   # POST operation should use verb Set
   - where:
       verb: Update
@@ -111,7 +111,7 @@ directive:
     remove: true
   # The below directive hides any cmdlet not currently shipped with Az.Synapse
   - where:
-      subject: ^(?!^BigDataPool$)(?!^Workspace$)(?!^SqlPool$).*$
+      subject: ^(?!^BigDataPool$)(?!^Workspace$)(?!^SqlPool$)(?!^SparkBatch$).*$
     hide: true
   - where:
       verb: Rename
