@@ -107,6 +107,9 @@ Gets the auditing settings of an Azure Synapse Analytics Workspace.
 ### [Get-AzSynapseSqlDatabase](Get-AzSynapseSqlDatabase.md)
 This feature is in a limited preview, initially accessible only to certain subscriptions. Gets a Synapse Analytics SQL database.
 
+### [Get-AzSynapseSqlManagedIdentityControlAccess](Get-AzSynapseSqlManagedIdentityControlAccess.md)
+Gets managed identity Sql control settings.
+
 ### [Get-AzSynapseSqlPool](Get-AzSynapseSqlPool.md)
 Gets a Synapse Analytics SQL pool.
 
@@ -154,6 +157,9 @@ Get the status of the subscription for the event trigger to the specified extern
 
 ### [Get-AzSynapseWorkspace](Get-AzSynapseWorkspace.md)
 Gets a Synapse Analytics workspace.
+
+### [Grant-AzSynapseSqlManagedIdentityControlAccess](Grant-AzSynapseSqlManagedIdentityControlAccess.md)
+Grants workspace's system-assigned managed identity Sql control access.
 
 ### [Invoke-AzSynapseIntegrationRuntimeUpgrade](Invoke-AzSynapseIntegrationRuntimeUpgrade.md)
 Upgrades self-hosted integration runtime.
@@ -268,6 +274,9 @@ Restores a Synapse Analytics SQL pool.
 
 ### [Resume-AzSynapseSqlPool](Resume-AzSynapseSqlPool.md)
 Resumes a Synapse Analytics SQL pool.
+
+### [Revoke-AzSynapseSqlManagedIdentityControlAccess](Revoke-AzSynapseSqlManagedIdentityControlAccess.md)
+Revokes workspace's system-assigned managed identity Sql control access.
 
 ### [Set-AzSynapseDataFlow](Set-AzSynapseDataFlow.md)
 Creates or updates a data flow in workspace.

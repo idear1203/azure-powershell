@@ -60,6 +60,8 @@ namespace Microsoft.Azure.Commands.Synapse.Models
 
         public const string AdvancedDataSecurityPolicy = nameof(AdvancedDataSecurityPolicy);
 
+        public const string ManagedIdentityControlAccess = nameof(ManagedIdentityControlAccess);
+
         public const string SqlDatabase = nameof(SqlDatabase);
 
         public const string SparkPoolName = nameof(SparkPoolName);

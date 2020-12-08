@@ -276,6 +276,14 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
                 return ResourceManager.GetString("DataClassificationFailedToRetrieveInformationProtectionPolicy", resourceCulture);
             }
         }
+
+        ///   Looks up a localized string similar to Are you sure you want to disable managed identity CONTROL permissions to SQL pools for pipeline integration on workspace &apos;{0}&apos;?.
+        /// </summary>
+        internal static string DisableManagedIdentity {
+            get {
+                return ResourceManager.GetString("DisableManagedIdentity", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Disabling Advanced Data Security on workspace &apos;{0}&apos;..
@@ -283,6 +291,14 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         internal static string DisablingAdvancedDataSecurity {
             get {
                 return ResourceManager.GetString("DisablingAdvancedDataSecurity", resourceCulture);
+            }
+        }
+
+        ///   Looks up a localized string similar to Disabling managed identity CONTROL permissions to SQL pools for pipeline integration on workspace &apos;{0}&apos;..
+        /// </summary>
+        internal static string DisablingManagedIdentity {
+            get {
+                return ResourceManager.GetString("DisablingManagedIdentity", resourceCulture);
             }
         }
         
@@ -319,6 +335,21 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         internal static string EnablingAdvancedDataSecurity {
             get {
                 return ResourceManager.GetString("EnablingAdvancedDataSecurity", resourceCulture);
+
+        ///   Looks up a localized string similar to Are you sure you want to enable managed identity CONTROL permissions to SQL pools for pipeline integration on workspace &apos;{0}&apos;?.
+        /// </summary>
+        internal static string EnableManagedIdentity {
+            get {
+                return ResourceManager.GetString("EnableManagedIdentity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabling managed identity CONTROL permissions to SQL pools for pipeline integration on workspace &apos;{0}&apos;..
+        /// </summary>
+        internal static string EnablingManagedIdentity {
+            get {
+                return ResourceManager.GetString("EnablingManagedIdentity", resourceCulture);
             }
         }
         

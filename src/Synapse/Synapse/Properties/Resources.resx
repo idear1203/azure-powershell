@@ -633,4 +633,16 @@ Are you sure you want to continue?</value>
   <data name="VulnerabilityAssessmentWrongParameterType" xml:space="preserve">
     <value>Wrong parameter type</value>
   </data>
+  <data name="DisableManagedIdentity" xml:space="preserve">
+    <value>Are you sure you want to disable managed identity control permissions to SQL pools for pipeline integration on workspace '{0}'?</value>
+  </data>
+  <data name="DisablingManagedIdentity" xml:space="preserve">
+    <value>Disabling managed identity control permissions to SQL pools for pipeline integration on workspace '{0}'.</value>
+  </data>
+  <data name="EnableManagedIdentity" xml:space="preserve">
+    <value>Are you sure you want to enable managed identity control permissions to SQL pools for pipeline integration on workspace '{0}'?</value>
+  </data>
+  <data name="EnablingManagedIdentity" xml:space="preserve">
+    <value>Enabling managed identity control permissions to SQL pools for pipeline integration on workspace '{0}'.</value>
+  </data>
 </root>
