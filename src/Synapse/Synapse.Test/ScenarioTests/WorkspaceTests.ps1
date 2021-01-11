@@ -131,7 +131,7 @@ function Test-SynapseWorkspace
 .SYNOPSIS
 Tests Synapse Workspace SQL Active Directory Administrator
 #>
-function Test-SynapseWorkspace-ActiveDirectoryAdministrator
+function Test-SynapseWorkspaceActiveDirectoryAdministrator
 {
     param
     (
@@ -185,7 +185,7 @@ function Test-SynapseWorkspace-ActiveDirectoryAdministrator
 Tests Synapse Workspace Security settings.
 Including SQL Auditing settings, Advanced threat protection settings and Vulnerability assessment settings.
 #>
-function Test-SynapseWorkspace-Security
+function Test-SynapseWorkspaceSecurity
 {
     param
     (
@@ -267,4 +267,61 @@ function Test-SynapseWorkspace-Security
     {
         Invoke-HandledCmdlet -Command {Remove-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageGen2AccountName} -IgnoreFailures
     }
+}
+
+<#
+.SYNOPSIS
+Tests Synapse Workspace managed identity settings.
+Including SQL Auditing settings, Advanced threat protection settings and Vulnerability assessment settings.
+#>
+function Test-SynapseWorkspaceManagedIdentitySettings
+{
+	# Setup
+	$testSuffix = getAssetName
+	Create-WorkspaceTestEnvironment $testSuffix
+	$params = Get-WorkspaceTestEnvironmentParameters $testSuffix
+
+	try
+	{
+    }
+	finally
+	{
+		# Cleanup
+		Remove-WorkspaceTestEnvironment $testSuffix
+	}
+}
+
+<#
+.SYNOPSIS
+Creates the test environment needed to perform the tests
+#>
+function Create-WorkspaceTestEnvironment ($testSuffix, $location = "West Central US")
+{
+	$params = Get-SqlVulnerabilityAssessmentTestEnvironmentParameters $testSuffix
+	Create-TestEnvironmentWithParams $params $location
+}
+
+<#
+.SYNOPSIS
+Gets the values of the parameters used at the tests
+#>
+function Get-WorkspaceTestEnvironmentParameters ($testSuffix)
+{
+	return @{ rgname = "sql-va-cmdlet-test-rg" +$testSuffix;
+			  workspaceName = "sqlvaws" +$testSuffix;
+			  storageAccountName = "sqlvastorage" + $testSuffix;
+			  fileSystemName = "sqlvacmdletfs" + $testSuffix;
+			  loginName = "testlogin";
+			  pwd = "testp@ssMakingIt1007Longer";
+		}
+}
+
+<#
+.SYNOPSIS
+Removes the test environment that was needed to perform the tests
+#>
+function Remove-WorkspaceTestEnvironment ($testSuffix)
+{
+	$params = Get-WorkspaceTestEnvironmentParameters $testSuffix
+	Remove-AzResourceGroup -Name $params.rgname -Force
 }

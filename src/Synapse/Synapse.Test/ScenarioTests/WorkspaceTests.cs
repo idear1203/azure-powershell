@@ -58,7 +58,7 @@ namespace Microsoft.Azure.Commands.Synapse.Test.ScenarioTests
             SynapseTestBase.NewInstance.RunPsTest(
                 _logger,
                 string.Format(
-                "Test-SynapseWorkspace-ActiveDirectoryAdministrator -resourceGroupName '{0}' -workspaceName '{1}'",
+                "Test-SynapseWorkspaceActiveDirectoryAdministrator -resourceGroupName '{0}' -workspaceName '{1}'",
                 testResourceGroupName,
                 testWorkspaceName));
         }
@@ -82,9 +82,18 @@ namespace Microsoft.Azure.Commands.Synapse.Test.ScenarioTests
             SynapseTestBase.NewInstance.RunPsTest(
                 _logger,
                 string.Format(
-                "Test-SynapseWorkspace-Security -resourceGroupName '{0}' -workspaceName '{1}'",
+                "Test-SynapseWorkspaceSecurity -resourceGroupName '{0}' -workspaceName '{1}'",
                 testResourceGroupName,
                 testWorkspaceName));
+        }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        public void TestSynapseWorkspaceManagedIdentitySetting()
+        {
+            SynapseTestBase.NewInstance.RunPsTest(
+                _logger,
+                "Test-SynapseWorkspaceManagedIdentitySetting");
         }
     }
 }

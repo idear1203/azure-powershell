@@ -4,6 +4,7 @@ using Microsoft.Azure.Commands.Common.Strategies;
 using Microsoft.Azure.Commands.Synapse.Common;
 using Microsoft.Azure.Commands.Synapse.Model;
 using Microsoft.Azure.Commands.Synapse.Models.Exceptions;
+using Microsoft.Azure.Commands.Synapse.Models.ManagedIdentitySqlControl;
 using Microsoft.Azure.Commands.Synapse.Properties;
 using Microsoft.Azure.Commands.Synapse.VulnerabilityAssessment.Model;
 using Microsoft.Azure.Graph.RBAC.Version1_6.ActiveDirectory;
@@ -1835,7 +1836,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
 
         #region Managed Identity Sql Control
 
-        public ManagedIdentitySqlControlSettingsModel GetManagedIdentitySqlControl(string resourceGroupName, string workspaceName)
+        public ManagedIdentitySqlControlSettingsModel GetManagedIdentitySqlControlSetting(string resourceGroupName, string workspaceName)
         {
             try
             {
@@ -1852,7 +1853,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
         }
 
-        public ManagedIdentitySqlControlSettingsModel UpdateManagedIdentitySqlControl(string resourceGroupName, string workspaceName, string desiredState)
+        public ManagedIdentitySqlControlSettingsModel UpdateManagedIdentitySqlControlSetting(string resourceGroupName, string workspaceName, ManagedIdentitySqlControlSettingsState desiredState)
         {
             try
             {
@@ -1863,7 +1864,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
 
                 var managedIdentitySqlControlSettings = new ManagedIdentitySqlControlSettingsModel
                 {
-                    GrantSqlControlToManagedIdentity = new ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity(desiredState: desiredState)
+                    GrantSqlControlToManagedIdentity = new ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity(desiredState: desiredState.ToString())
                 };
                 
                 return this._synapseManagementClient.WorkspaceManagedIdentitySqlControlSettings.CreateOrUpdate(resourceGroupName, workspaceName, managedIdentitySqlControlSettings);

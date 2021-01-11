@@ -53,7 +53,7 @@ namespace Microsoft.Azure.Commands.Synapse
                 this.WorkspaceName = resourceIdentifier.ResourceName;
             }
 
-            var result = new PSManagedIdentitySqlControlSettingsModel(SynapseAnalyticsClient.GetManagedIdentitySqlControl(this.ResourceGroupName, this.WorkspaceName));
+            var result = new PSManagedIdentitySqlControlSettingsModel(SynapseAnalyticsClient.GetManagedIdentitySqlControlSetting(this.ResourceGroupName, this.WorkspaceName));
             WriteObject(result);
         }
     }

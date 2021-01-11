@@ -332,9 +332,13 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Enabling Advanced Data Security on workspace &apos;{0}&apos;..
         /// </summary>
-        internal static string EnablingAdvancedDataSecurity {
-            get {
+        internal static string EnablingAdvancedDataSecurity
+        {
+            get
+            {
                 return ResourceManager.GetString("EnablingAdvancedDataSecurity", resourceCulture);
+            }
+        }
 
         ///   Looks up a localized string similar to Are you sure you want to enable managed identity CONTROL permissions to SQL pools for pipeline integration on workspace &apos;{0}&apos;?.
         /// </summary>

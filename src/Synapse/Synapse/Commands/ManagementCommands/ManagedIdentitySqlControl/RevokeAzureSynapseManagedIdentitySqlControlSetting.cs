@@ -1,6 +1,7 @@
 ﻿using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
 using Microsoft.Azure.Commands.Synapse.Common;
 using Microsoft.Azure.Commands.Synapse.Models;
+using Microsoft.Azure.Commands.Synapse.Models.ManagedIdentitySqlControl;
 using Microsoft.Azure.Commands.Synapse.Properties;
 using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
 using Microsoft.WindowsAzure.Commands.Utilities.Common;
@@ -8,10 +9,10 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Synapse
 {
-    [Cmdlet(VerbsSecurity.Grant, ResourceManager.Common.AzureRMConstants.AzureRMPrefix + SynapseConstants.SynapsePrefix + SynapseConstants.Sql + SynapseConstants.ManagedIdentityControlAccess,
-        DefaultParameterSetName = ByNameParameterSet, SupportsShouldProcess = true)]
+    [Cmdlet(VerbsSecurity.Revoke, ResourceManager.Common.AzureRMConstants.AzureRMPrefix + SynapseConstants.SynapsePrefix + SynapseConstants.Sql + SynapseConstants.ManagedIdentityControlAccess,
+           DefaultParameterSetName = ByNameParameterSet, SupportsShouldProcess = true)]
     [OutputType(typeof(PSManagedIdentitySqlControlSettingsModel))]
-    public class EnableAzureSynapseManagedIdentitySqlControlSetting : SynapseManagementCmdletBase
+    public class RevokeAzureSynapseManagedIdentitySqlControlSetting : SynapseManagementCmdletBase
     {
         private const string ByNameParameterSet = "ByNameParameterSet";
         private const string ByInputObjectParameterSet = "ByInputObjectParameterSet";
@@ -60,12 +61,12 @@ namespace Microsoft.Azure.Commands.Synapse
 
             ConfirmAction(
                 Force.IsPresent,
-                string.Format(Resources.EnableManagedIdentity, this.WorkspaceName),
-                string.Format(Resources.EnablingManagedIdentity, this.WorkspaceName),
+                string.Format(Resources.DisableManagedIdentity, this.WorkspaceName),
+                string.Format(Resources.DisablingManagedIdentity, this.WorkspaceName),
                 this.WorkspaceName,
                 () =>
                 {
-                    var result = new PSManagedIdentitySqlControlSettingsModel(SynapseAnalyticsClient.UpdateManagedIdentitySqlControl(this.ResourceGroupName, this.WorkspaceName, "Enabled"));
+                    var result = new PSManagedIdentitySqlControlSettingsModel(SynapseAnalyticsClient.UpdateManagedIdentitySqlControlSetting(this.ResourceGroupName, this.WorkspaceName, ManagedIdentitySqlControlSettingsState.Disabled));
                     WriteObject(result);
                 });
         }
