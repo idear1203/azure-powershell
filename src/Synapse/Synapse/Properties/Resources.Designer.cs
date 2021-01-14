@@ -269,19 +269,20 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creating a new workspace key in resource group &apos;{0}&apos; under parent Workspace &apos;{1}&apos; with name &apos;{2}&apos;..
+        /// </summary>
+        internal static string CreatingSynapseWorkspaceKey {
+            get {
+                return ResourceManager.GetString("CreatingSynapseWorkspaceKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to retrieve information protection policy of tenant {0}..
         /// </summary>
         internal static string DataClassificationFailedToRetrieveInformationProtectionPolicy {
             get {
                 return ResourceManager.GetString("DataClassificationFailedToRetrieveInformationProtectionPolicy", resourceCulture);
-            }
-        }
-
-        ///   Looks up a localized string similar to Are you sure you want to disable managed identity CONTROL permissions to SQL pools for pipeline integration on workspace &apos;{0}&apos;?.
-        /// </summary>
-        internal static string DisableManagedIdentity {
-            get {
-                return ResourceManager.GetString("DisableManagedIdentity", resourceCulture);
             }
         }
         
@@ -291,14 +292,6 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         internal static string DisablingAdvancedDataSecurity {
             get {
                 return ResourceManager.GetString("DisablingAdvancedDataSecurity", resourceCulture);
-            }
-        }
-
-        ///   Looks up a localized string similar to Disabling managed identity CONTROL permissions to SQL pools for pipeline integration on workspace &apos;{0}&apos;..
-        /// </summary>
-        internal static string DisablingManagedIdentity {
-            get {
-                return ResourceManager.GetString("DisablingManagedIdentity", resourceCulture);
             }
         }
         
@@ -332,28 +325,9 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Enabling Advanced Data Security on workspace &apos;{0}&apos;..
         /// </summary>
-        internal static string EnablingAdvancedDataSecurity
-        {
-            get
-            {
+        internal static string EnablingAdvancedDataSecurity {
+            get {
                 return ResourceManager.GetString("EnablingAdvancedDataSecurity", resourceCulture);
-            }
-        }
-
-        ///   Looks up a localized string similar to Are you sure you want to enable managed identity CONTROL permissions to SQL pools for pipeline integration on workspace &apos;{0}&apos;?.
-        /// </summary>
-        internal static string EnableManagedIdentity {
-            get {
-                return ResourceManager.GetString("EnableManagedIdentity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enabling managed identity CONTROL permissions to SQL pools for pipeline integration on workspace &apos;{0}&apos;..
-        /// </summary>
-        internal static string EnablingManagedIdentity {
-            get {
-                return ResourceManager.GetString("EnablingManagedIdentity", resourceCulture);
             }
         }
         
@@ -417,6 +391,15 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         internal static string FailedToDiscoverFirewallRuleByWorkspace {
             get {
                 return ResourceManager.GetString("FailedToDiscoverFirewallRuleByWorkspace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A workspace key with name &apos;{0}&apos; in resource group &apos;{1}&apos; under workspace &apos;{2}&apos; does not exist. Please use New-AzSynapseWorkspaceKey to create a workspace key with these properties..
+        /// </summary>
+        internal static string FailedToDiscoverKey {
+            get {
+                return ResourceManager.GetString("FailedToDiscoverKey", resourceCulture);
             }
         }
         
@@ -738,11 +721,29 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot perform the requested operation because the specified workspace key &apos;{0}&apos; does not exist..
+        /// </summary>
+        internal static string KeyDoesNotExist {
+            get {
+                return ResourceManager.GetString("KeyDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while requesting the status of Integration Runtime, but you can manually execute the following command: Get-AzSynapseIntegrationRuntime -WorkspaceName MyWorkspace -ResourceGroupName MyResourceGroup -Name MyIR -Status.
         /// </summary>
         internal static string LongRunningStatusError {
             get {
                 return ResourceManager.GetString("LongRunningStatusError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This workspace doesn&apos;t have managed virtual network settings.
+        /// </summary>
+        internal static string ManagedVirtualNetworkNotExist {
+            get {
+                return ResourceManager.GetString("ManagedVirtualNetworkNotExist", resourceCulture);
             }
         }
         
@@ -914,6 +915,15 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         internal static string RemoveSynapseWorkspace {
             get {
                 return ResourceManager.GetString("RemoveSynapseWorkspace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to remove workspace key &apos;{0}&apos;?.
+        /// </summary>
+        internal static string RemoveWorkspaceKey {
+            get {
+                return ResourceManager.GetString("RemoveWorkspaceKey", resourceCulture);
             }
         }
         
@@ -1130,6 +1140,15 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         internal static string RemovingWorkspaceAudit {
             get {
                 return ResourceManager.GetString("RemovingWorkspaceAudit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting workspace key &apos;{0}&apos; in resource group &apos;{1}&apos; under workspace &apos;{2}&apos;..
+        /// </summary>
+        internal static string RemovingWorkspaceKey {
+            get {
+                return ResourceManager.GetString("RemovingWorkspaceKey", resourceCulture);
             }
         }
         
@@ -1439,7 +1458,7 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Spark pool with name &apos;{0}&apos; in resource group &apos;{1}&apos; under workspace &apos;{2}&apos; already exists. Please use Set-AzSynapseSparkPool to update an existing Spark pool..
+        ///   Looks up a localized string similar to A Spark pool with name &apos;{0}&apos; in resource group &apos;{1}&apos; under workspace &apos;{2}&apos; already exists. Please use Update-AzSynapseSparkPool to update an existing Spark pool..
         /// </summary>
         internal static string SynapseSparkPoolExists {
             get {
@@ -1457,7 +1476,7 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A SQL pool with name &apos;{0}&apos; in resource group &apos;{1}&apos; under workspace &apos;{2}&apos; already exists. Please use Set-AzSynapseSqlPool to update an existing SQL pool..
+        ///   Looks up a localized string similar to A SQL pool with name &apos;{0}&apos; in resource group &apos;{1}&apos; under workspace &apos;{2}&apos; already exists. Please use Update-AzSynapseSqlPool to update an existing SQL pool..
         /// </summary>
         internal static string SynapseSqlPoolExists {
             get {
@@ -1466,7 +1485,7 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A workspace with name &apos;{0}&apos; in resource group &apos;{1}&apos; already exists. Please use Set-AzSynapseWorkspace to update an existing workspace..
+        ///   Looks up a localized string similar to A workspace with name &apos;{0}&apos; in resource group &apos;{1}&apos; already exists. Please use Update-AzSynapseWorkspace to update an existing workspace..
         /// </summary>
         internal static string SynapseWorkspaceExists {
             get {
@@ -1507,6 +1526,15 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         internal static string UpdatingIntegrationRuntimeNode {
             get {
                 return ResourceManager.GetString("UpdatingIntegrationRuntimeNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating managed identity control permissions to SQL pools for pipeline integration on workspace &apos;{0}&apos;..
+        /// </summary>
+        internal static string UpdatingManagedIdentity {
+            get {
+                return ResourceManager.GetString("UpdatingManagedIdentity", resourceCulture);
             }
         }
         
@@ -1583,6 +1611,15 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Updating workspace key &apos;{0}&apos; in resource group &apos;{1}&apos; under Workspace &apos;{2}&apos;..
+        /// </summary>
+        internal static string UpdatingWorkspaceKey {
+            get {
+                return ResourceManager.GetString("UpdatingWorkspaceKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upgrading integration runtime &apos;{0}&apos;..
         /// </summary>
         internal static string UpgradingIntegrationRuntime {
@@ -1642,6 +1679,15 @@ namespace Microsoft.Azure.Commands.Synapse.Properties {
         internal static string WorkspaceDoesNotExist {
             get {
                 return ResourceManager.GetString("WorkspaceDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A workspace key with name &apos;{0}&apos; in resource group &apos;{1}&apos; under workspace &apos;{2}&apos; already exists. Please use Update-AzSynapseWorkspaceKey to update an existing workspace key..
+        /// </summary>
+        internal static string WorkspaceKeyExists {
+            get {
+                return ResourceManager.GetString("WorkspaceKeyExists", resourceCulture);
             }
         }
     }

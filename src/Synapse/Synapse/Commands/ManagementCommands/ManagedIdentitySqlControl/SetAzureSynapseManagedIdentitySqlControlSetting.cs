@@ -9,13 +9,13 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Synapse
 {
-    [Cmdlet(VerbsSecurity.Revoke, ResourceManager.Common.AzureRMConstants.AzureRMPrefix + SynapseConstants.SynapsePrefix + SynapseConstants.Sql + SynapseConstants.ManagedIdentityControlAccess,
-           DefaultParameterSetName = ByNameParameterSet, SupportsShouldProcess = true)]
+    [Cmdlet(VerbsCommon.Set, ResourceManager.Common.AzureRMConstants.AzureRMPrefix + SynapseConstants.SynapsePrefix + SynapseConstants.ManagedIdentitySqlControlSetting,
+        DefaultParameterSetName = ByNameParameterSet, SupportsShouldProcess = true)]
     [OutputType(typeof(PSManagedIdentitySqlControlSettingsModel))]
-    public class RevokeAzureSynapseManagedIdentitySqlControlSetting : SynapseManagementCmdletBase
+    public class SetAzureSynapseManagedIdentitySqlControlSetting : SynapseManagementCmdletBase
     {
         private const string ByNameParameterSet = "ByNameParameterSet";
-        private const string ByInputObjectParameterSet = "ByInputObjectParameterSet";
+        private const string ByParentObjectParameterSet = "ByParentObjectParameterSet";
         private const string ByResourceIdParameterSet = "ByResourceIdParameterSet";
 
         [Parameter(ParameterSetName = ByNameParameterSet, Mandatory = false,
@@ -30,26 +30,26 @@ namespace Microsoft.Azure.Commands.Synapse
         [ValidateNotNullOrEmpty]
         public string WorkspaceName { get; set; }
 
-        [Parameter(ValueFromPipeline = true, ParameterSetName = ByInputObjectParameterSet,
+        [Parameter(ValueFromPipeline = true, ParameterSetName = ByParentObjectParameterSet,
             Mandatory = true, HelpMessage = HelpMessages.WorkspaceObject)]
         [ValidateNotNull]
-        public PSSynapseWorkspace InputObject { get; set; }
+        public PSSynapseWorkspace WorkspaceObject { get; set; }
 
         [Parameter(ValueFromPipelineByPropertyName = false, ParameterSetName = ByResourceIdParameterSet,
             Mandatory = true, HelpMessage = HelpMessages.WorkspaceResourceId)]
         [ValidateNotNullOrEmpty]
         public string ResourceId { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = HelpMessages.Force)]
-        public SwitchParameter Force { get; set; }
+        [Parameter(Mandatory = true, HelpMessage = HelpMessages.EnableManagedIdentitySqlControlSetting)]
+        public bool Enabled { get; set; }
 
         public override void ExecuteCmdlet()
         {
-            if (this.IsParameterBound(c => c.InputObject))
+            if (this.IsParameterBound(c => c.WorkspaceObject))
             {
-                var resourceIdentifier = new ResourceIdentifier(this.InputObject.Id);
+                var resourceIdentifier = new ResourceIdentifier(this.WorkspaceObject.Id);
                 this.ResourceGroupName = resourceIdentifier.ResourceGroupName;
-                this.WorkspaceName = this.InputObject.Name;
+                this.WorkspaceName = this.WorkspaceObject.Name;
             }
 
             if (this.IsParameterBound(c => c.ResourceId))
@@ -60,13 +60,12 @@ namespace Microsoft.Azure.Commands.Synapse
             }
 
             ConfirmAction(
-                Force.IsPresent,
-                string.Format(Resources.DisableManagedIdentity, this.WorkspaceName),
-                string.Format(Resources.DisablingManagedIdentity, this.WorkspaceName),
+                string.Format(Resources.UpdatingManagedIdentity, this.WorkspaceName),
                 this.WorkspaceName,
                 () =>
                 {
-                    var result = new PSManagedIdentitySqlControlSettingsModel(SynapseAnalyticsClient.UpdateManagedIdentitySqlControlSetting(this.ResourceGroupName, this.WorkspaceName, ManagedIdentitySqlControlSettingsState.Disabled));
+                    var desiredState = Enabled ? ManagedIdentitySqlControlSettingsState.Enabled : ManagedIdentitySqlControlSettingsState.Disabled;
+                    var result = new PSManagedIdentitySqlControlSettingsModel(SynapseAnalyticsClient.UpdateManagedIdentitySqlControlSetting(this.ResourceGroupName, this.WorkspaceName, desiredState));
                     WriteObject(result);
                 });
         }

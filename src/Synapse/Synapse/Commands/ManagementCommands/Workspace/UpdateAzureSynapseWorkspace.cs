@@ -54,6 +54,14 @@ namespace Microsoft.Azure.Commands.Synapse
         [ValidateNotNull]
         public SecureString SqlAdministratorLoginPassword { get; set; }
 
+        [Parameter(Mandatory = false, HelpMessage = HelpMessages.ManagedVirtualNetwork)]
+        [ValidateNotNull]
+        public PSManagedVirtualNetworkSettings ManagedVirtualNetwork { get; set; }
+
+        [Parameter(Mandatory = false, HelpMessage = HelpMessages.EncryptionKeyVaultUrl)]
+        [ValidateNotNullOrEmpty]
+        public string EncryptionKeyVaultUrl { get; set; }
+
         [Parameter(Mandatory = false, HelpMessage = HelpMessages.AsJob)]
         public SwitchParameter AsJob { get; set; }
 
@@ -95,6 +103,21 @@ namespace Microsoft.Azure.Commands.Synapse
 
             existingWorkspace.Tags = this.IsParameterBound(c => c.Tag) ? TagsConversionHelper.CreateTagDictionary(this.Tag, validate: true) : existingWorkspace.Tags;
             existingWorkspace.SqlAdministratorLoginPassword = this.IsParameterBound(c => c.SqlAdministratorLoginPassword) ? this.SqlAdministratorLoginPassword.ConvertToString() : existingWorkspace.SqlAdministratorLoginPassword;
+            existingWorkspace.ManagedVirtualNetworkSettings = this.IsParameterBound(c => c.ManagedVirtualNetwork) ? this.ManagedVirtualNetwork.ToSdkObject() : existingWorkspace.ManagedVirtualNetworkSettings;
+
+            if (this.IsParameterBound(c => c.EncryptionKeyVaultUrl))
+            {
+                existingWorkspace.Encryption = new EncryptionDetails
+                {
+                    Cmk = new CustomerManagedKeyDetails
+                    {
+                        Key = new WorkspaceKeyDetails
+                        {
+                            KeyVaultUrl = this.EncryptionKeyVaultUrl
+                        }
+                    }
+                };
+            }
 
             if (ShouldProcess(this.Name, string.Format(Resources.UpdatingSynapseWorkspace, this.Name, this.ResourceGroupName)))
             {

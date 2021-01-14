@@ -7,12 +7,12 @@ using System.Management.Automation;
 
 namespace Microsoft.Azure.Commands.Synapse
 {
-    [Cmdlet(VerbsCommon.Get, ResourceManager.Common.AzureRMConstants.AzureRMPrefix + SynapseConstants.SynapsePrefix + SynapseConstants.Sql + SynapseConstants.ManagedIdentityControlAccess, DefaultParameterSetName = ByNameParameterSet)]
+    [Cmdlet(VerbsCommon.Get, ResourceManager.Common.AzureRMConstants.AzureRMPrefix + SynapseConstants.SynapsePrefix + SynapseConstants.ManagedIdentitySqlControlSetting, DefaultParameterSetName = ByNameParameterSet)]
     [OutputType(typeof(PSManagedIdentitySqlControlSettingsModel))]
     public class GetAzureSynapseManagedIdentitySqlControlSetting : SynapseManagementCmdletBase
     {
         private const string ByNameParameterSet = "ByNameParameterSet";
-        private const string ByInputObjectParameterSet = "ByInputObjectParameterSet";
+        private const string ByParentObjectParameterSet = "ByParentObjectParameterSet";
         private const string ByResourceIdParameterSet = "ByResourceIdParameterSet";
 
         [Parameter(ParameterSetName = ByNameParameterSet, Mandatory = false,
@@ -27,10 +27,10 @@ namespace Microsoft.Azure.Commands.Synapse
         [ValidateNotNullOrEmpty]
         public string WorkspaceName { get; set; }
 
-        [Parameter(ValueFromPipeline = true, ParameterSetName = ByInputObjectParameterSet,
+        [Parameter(ValueFromPipeline = true, ParameterSetName = ByParentObjectParameterSet,
             Mandatory = true, HelpMessage = HelpMessages.WorkspaceObject)]
         [ValidateNotNull]
-        public PSSynapseWorkspace InputObject { get; set; }
+        public PSSynapseWorkspace WorkspaceObject { get; set; }
 
         [Parameter(ValueFromPipelineByPropertyName = false, ParameterSetName = ByResourceIdParameterSet,
             Mandatory = true, HelpMessage = HelpMessages.WorkspaceResourceId)]
@@ -39,11 +39,11 @@ namespace Microsoft.Azure.Commands.Synapse
 
         public override void ExecuteCmdlet()
         {
-            if (this.IsParameterBound(c => c.InputObject))
+            if (this.IsParameterBound(c => c.WorkspaceObject))
             {
-                var resourceIdentifier = new ResourceIdentifier(this.InputObject.Id);
+                var resourceIdentifier = new ResourceIdentifier(this.WorkspaceObject.Id);
                 this.ResourceGroupName = resourceIdentifier.ResourceGroupName;
-                this.WorkspaceName = this.InputObject.Name;
+                this.WorkspaceName = this.WorkspaceObject.Name;
             }
 
             if (this.IsParameterBound(c => c.ResourceId))

@@ -7,6 +7,7 @@ using Microsoft.Azure.Commands.Synapse.Properties;
 using Microsoft.Azure.Commands.ResourceManager.Common.Tags;
 using Microsoft.Azure.Commands.Synapse.Common;
 using Microsoft.Azure.Commands.Synapse.Models.Exceptions;
+using Microsoft.WindowsAzure.Commands.Utilities.Common;
 
 namespace Microsoft.Azure.Commands.Synaspe
 {
@@ -54,8 +55,12 @@ namespace Microsoft.Azure.Commands.Synaspe
         public PSCredential SqlAdministratorLoginCredential { get; set; }
 
         [Parameter(Mandatory = false, HelpMessage = HelpMessages.ManagedVirtualNetwork)]
-        [ValidateSet("default")]
-        public string ManagedVirtualNetwork { get; set; }
+        [ValidateNotNull]
+        public PSManagedVirtualNetworkSettings ManagedVirtualNetwork { get; set; }
+
+        [Parameter(Mandatory = false, HelpMessage = HelpMessages.EncryptionKeyVaultUrl)]
+        [ValidateNotNullOrEmpty]
+        public string EncryptionKeyVaultUrl { get; set; }
 
         [Parameter(Mandatory = false, HelpMessage = HelpMessages.AsJob)]
         public SwitchParameter AsJob { get; set; }
@@ -105,8 +110,20 @@ namespace Microsoft.Azure.Commands.Synaspe
                 },
                 SqlAdministratorLogin = this.SqlAdministratorLoginCredential.UserName,
                 SqlAdministratorLoginPassword = this.SqlAdministratorLoginCredential.GetNetworkCredential().Password,
-                ManagedVirtualNetwork = this.ManagedVirtualNetwork,
-                Location = this.Location
+                ManagedVirtualNetwork = this.IsParameterBound(c => c.ManagedVirtualNetwork) ? SynapseConstants.DefaultName : null,
+                Location = this.Location,
+                ManagedVirtualNetworkSettings = this.IsParameterBound(c => c.ManagedVirtualNetwork) ? this.ManagedVirtualNetwork.ToSdkObject() : null,
+                Encryption = this.IsParameterBound(c => c.EncryptionKeyVaultUrl) ? new EncryptionDetails
+                {
+                    Cmk = new CustomerManagedKeyDetails
+                    {
+                        Key = new WorkspaceKeyDetails
+                        {
+                            Name = SynapseConstants.DefaultName,
+                            KeyVaultUrl = this.EncryptionKeyVaultUrl
+                        }
+                    }
+                } : null
             };
 
             if (ShouldProcess(Name, string.Format(Resources.CreatingSynapseWorkspace, this.ResourceGroupName, this.Name)))

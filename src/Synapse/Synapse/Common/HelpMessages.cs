@@ -22,7 +22,7 @@ namespace Microsoft.Azure.Commands.Synapse.Common
 
         public const string DeletionDate = "The deletion date of the Azure Synaspe SQL Database to retrieve backups for, with millisecond precision (e.g. 2016-02-23T00:21:22.847Z)";
 
-        public const string ManagedVirtualNetwork = "Name of a Synapse-managed virtual network dedicated for the Azure Synapse workspace.";
+        public const string ManagedVirtualNetwork = "Managed Virtual Network Settings.";
 
         public const string DisallowAllConnection = "Azure Synapse Studio and other client tools will only be able to connect to the workspace endpoints if this parameter is not present. Connections from specific IP addresses or all Azure services can be allowed/disallowed after the workspace is provisioned.";
 
@@ -400,5 +400,25 @@ For more information, see https://docs.microsoft.com/en-us/sql/relational-databa
         public const string DataFlowName = "The data flow name.";
 
         public const string DataFlowObject = "The data flow object.";
+
+        public const string EnableManagedIdentitySqlControlSetting = "Indicates whether to enable managed identity SQL control setting. Specify $True to enable managed identity SQL control setting, or $False to disable managed identity SQL control setting.";
+
+        public const string PreventDataExfiltration = "Indicates whether to prevent data exfiltration.";
+
+        public const string LinkedAccessCheckOnTargetResource = "Indicates whther to check linked access on target resource.";
+
+        public const string AllowedAadTenantIdsForLinking = "The allowed AAD tenant IDs for linking.";
+
+        public const string EncryptionKeyVaultUrl = "The Key Vault Url of the workspace key.";
+
+        public const string WorkspaceKeyName = "The name of the workspace key.";
+
+        public const string IsActiveCustomerManagedKey = "Indicates whether to activate the workspace after a customer managed key is provided.";
+
+        public const string KeyName = "The name of workspace key.";
+
+        public const string KeyResourceId = "The resource identifier of Synapse SQL Pool.";
+
+        public const string KeyObject = "Workspace key input object, usually passed through the pipeline.";
     }
 }

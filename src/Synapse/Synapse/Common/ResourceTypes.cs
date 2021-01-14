@@ -11,5 +11,6 @@
         public const string SqlDatabase = "Microsoft.Sql/servers/databases";
         public const string RecoverablSqlDatabase = "Microsoft.Sql/servers/recoverableDatabases";
         public const string IntegrationRuntime = "Microsoft.Synapse/workspaces/integrationruntimes";
+        public const string Key = "Microsoft.Synapse/workspaces/keys";
     }
 }
