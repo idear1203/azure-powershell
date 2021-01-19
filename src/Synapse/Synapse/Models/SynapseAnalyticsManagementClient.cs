@@ -321,12 +321,17 @@ namespace Microsoft.Azure.Commands.Synapse.Models
 
         public string GetResourceGroupByWorkspaceName(string workspaceName)
         {
+            var workspaceId = ListWorkspaces()
+                    .FirstOrDefault(x => x.Name.Equals(workspaceName, StringComparison.InvariantCultureIgnoreCase))
+                    ?.Id;
+
+            if (workspaceId == null)
+            {
+                throw new NotFoundException(string.Format(Properties.Resources.FailedToDiscoverResourceGroup, workspaceName, _subscriptionId));
+            }
+
             try
             {
-                var workspaceId = ListWorkspaces()
-                        .Find(x => x.Name.Equals(workspaceName, StringComparison.InvariantCultureIgnoreCase))
-                        .Id;
-
                 return new ResourceIdentifier(workspaceId).ResourceGroupName;
             }
             catch

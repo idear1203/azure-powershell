@@ -61,5 +61,14 @@ namespace Microsoft.Azure.Commands.Synapse.Test.ScenarioTests
                 _logger,
                 "Test-SynapseManagedIdentitySqlControlSetting");
         }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        public void TestSynapseWorkspaceKey()
+        {
+            SynapseTestBase.NewInstance.RunPsTest(
+                _logger,
+                "Test-SynapseWorkspaceKey");
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace Microsoft.Azure.Commands.Synapse.Commands.ManagementCommands
         [ValidateNotNull]
         public PSSynapseWorkspace WorkspaceObject { get; set; }
 
-        [Parameter(Mandatory = true, HelpMessage = HelpMessages.WorkspaceKeyName)]
+        [Parameter(Mandatory = false, HelpMessage = HelpMessages.WorkspaceKeyName)]
         [Alias(nameof(SynapseConstants.KeyName))]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
@@ -76,6 +76,11 @@ namespace Microsoft.Azure.Commands.Synapse.Commands.ManagementCommands
                 IsActiveCMK = !this.DoNotActivateCustomerManagedKey.IsPresent,
                 KeyVaultUrl = this.KeyVaultUrl
             };
+
+            if (!this.IsParameterBound(c => c.Name))
+            {
+                this.Name = SynapseConstants.DefaultName;
+            }
 
             if (this.ShouldProcess(this.Name, string.Format(Resources.CreatingSynapseWorkspaceKey, this.ResourceGroupName, this.WorkspaceName, this.Name)))
             {
