@@ -1,9 +1,8 @@
 ﻿using Microsoft.Azure.Commands.Common.Authentication;
 using Microsoft.Azure.Commands.Common.Authentication.Abstractions;
+using Microsoft.Azure.Commands.Common.Exceptions;
 using Microsoft.Azure.Commands.Common.Strategies;
 using Microsoft.Azure.Commands.Synapse.Common;
-using Microsoft.Azure.Commands.Synapse.Model;
-using Microsoft.Azure.Commands.Synapse.Models.Exceptions;
 using Microsoft.Azure.Commands.Synapse.Models.ManagedIdentitySqlControl;
 using Microsoft.Azure.Commands.Synapse.Properties;
 using Microsoft.Azure.Commands.Synapse.VulnerabilityAssessment.Model;
@@ -55,7 +54,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
         {
             if (context == null)
             {
-                throw new SynapseException(Resources.InvalidDefaultSubscription);
+                throw new AzPSInvalidOperationException(Resources.InvalidDefaultSubscription);
             }
 
             Context = context;
@@ -117,11 +116,23 @@ namespace Microsoft.Azure.Commands.Synapse.Models
 
         #region Workspace operations
 
-        public Workspace CreateOrUpdateWorkspace(string resourceGroupName, string workspaceName, Workspace createOrUpdateParams)
+        public Workspace CreateWorkspace(string resourceGroupName, string workspaceName, Workspace createParams)
         {
             try
             {
-                return _synapseManagementClient.Workspaces.CreateOrUpdate(resourceGroupName, workspaceName, createOrUpdateParams);
+                return _synapseManagementClient.Workspaces.CreateOrUpdate(resourceGroupName, workspaceName, createParams);
+            }
+            catch (ErrorContractException ex)
+            {
+                throw GetSynapseException(ex);
+            }
+        }
+
+        public Workspace UpdateWorkspace(string resourceGroupName, string workspaceName, WorkspacePatchInfo updateParams)
+        {
+            try
+            {
+                return _synapseManagementClient.Workspaces.Update(resourceGroupName, workspaceName, updateParams);
             }
             catch (ErrorContractException ex)
             {
@@ -260,7 +271,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch
             {
-                throw new NotFoundException(string.Format(Properties.Resources.FailedToDiscoverFirewallRuleByWorkspace, workspaceName));
+                throw new AzPSResourceNotFoundCloudException(string.Format(Properties.Resources.FailedToDiscoverFirewallRuleByWorkspace, workspaceName));
             }
         }
 
@@ -300,7 +311,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
                 GetWorkspace(resourceGroupName, workspaceName);
                 return true;
             }
-            catch (NotFoundException)
+            catch (AzPSResourceNotFoundCloudException)
             {
                 return false;
             }
@@ -313,7 +324,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
                 GetFirewallRule(resourceGroupName, workspaceName, ruleName);
                 return true;
             }
-            catch (NotFoundException)
+            catch (AzPSResourceNotFoundCloudException)
             {
                 return false;
             }
@@ -327,7 +338,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
 
             if (workspaceId == null)
             {
-                throw new NotFoundException(string.Format(Properties.Resources.FailedToDiscoverResourceGroup, workspaceName, _subscriptionId));
+                throw new AzPSResourceNotFoundCloudException(string.Format(Properties.Resources.FailedToDiscoverResourceGroup, workspaceName, _subscriptionId));
             }
 
             try
@@ -336,7 +347,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch
             {
-                throw new NotFoundException(string.Format(Properties.Resources.FailedToDiscoverResourceGroup, workspaceName, _subscriptionId));
+                throw new AzPSResourceNotFoundCloudException(string.Format(Properties.Resources.FailedToDiscoverResourceGroup, workspaceName, _subscriptionId));
             }
         }
 
@@ -1686,7 +1697,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
                 GetSqlPool(resourceGroupName, workspaceName, sqlPoolName);
                 return true;
             }
-            catch (NotFoundException)
+            catch (AzPSResourceNotFoundCloudException)
             {
                 return false;
             }
@@ -1831,7 +1842,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
 
                 return respoint != null;
             }
-            catch (NotFoundException)
+            catch (ErrorContractException)
             {
                 return false;
             }
@@ -1989,7 +2000,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
                 GetSqlPoolV3(resourceGroupName, workspaceName, sqlPoolName);
                 return true;
             }
-            catch (NotFoundException)
+            catch (AzPSResourceNotFoundCloudException)
             {
                 return false;
             }
@@ -2158,7 +2169,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
                 GetSqlDatabase(resourceGroupName, workspaceName, sqlDatabaseName);
                 return true;
             }
-            catch (NotFoundException)
+            catch (AzPSResourceNotFoundCloudException)
             {
                 return false;
             }
@@ -2244,7 +2255,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
                 GetSparkPool(resourceGroupName, workspaceName, sparkPoolName);
                 return true;
             }
-            catch (NotFoundException)
+            catch (AzPSResourceNotFoundCloudException)
             {
                 return false;
             }
@@ -2942,7 +2953,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
                 GetKey(resourceGroupName, workspaceName, KeyName);
                 return true;
             }
-            catch (NotFoundException)
+            catch (AzPSResourceNotFoundCloudException)
             {
                 return false;
             }
@@ -2969,14 +2980,14 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             return resourceList;
         }
 
-        private static SynapseException GetSynapseException(ErrorContractException ex)
+        private static Exception GetSynapseException(ErrorContractException ex)
         {
-            return ex.CreateSynapseException();
+            return Utils.CreateSynapseException(ex);
         }
 
-        private static SynapseException GetSynapseException(CloudException ex)
+        private static Exception GetSynapseException(CloudException ex)
         {
-            return ex.CreateSynapseException();
+            return Utils.CreateSynapseException(ex);
         }
 
         #endregion

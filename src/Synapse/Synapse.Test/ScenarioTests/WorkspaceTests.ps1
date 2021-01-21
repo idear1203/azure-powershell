@@ -382,10 +382,66 @@ function Test-SynapseWorkspaceKey
 {
 	# Setup
 	$testSuffix = getAssetName
-	Create-WorkspaceTestEnvironment $testSuffix
-	$params = Get-WorkspaceTestEnvironmentParameters $testSuffix
+    Create-WorkspaceEncryptionTestEnvironment $testSuffix
+    $params = Get-WorkspaceEncryptionTestEnvironmentParameters $testSuffix
+
     try
     {
+        # Create a key vault and add keys
+        New-AzKeyVault -VaultName $params.vaultName -ResourceGroupName $params.rgname -Location $params.location -EnablePurgeProtection
+        Add-AzKeyVaultKey -VaultName $params.vaultName -Name $params.firstKeyName -Destination 'Software'
+        Add-AzKeyVaultKey -VaultName $params.vaultName -Name $params.secondKeyName -Destination 'Software'
+
+        # Create a workspace with CMK
+        Create-WorkspaceEncryptionTestEnvironment $testSuffix
+
+        # Retrieve workspace object id
+        $workspaceId = (Get-AzADServicePrincipal -DisplayName $params.workspaceName).Id
+
+        # Set Access Policy
+        Set-AzKeyVaultAccessPolicy -VaultName $params.vaultName -ObjectId $workspaceId -PermissionsToKeys get,wrapkey,unwrapkey
+
+        # Activate workspace
+        Update-AzSynapseWorkspaceKey -ResourceGroupName $params.rgname -WorkspaceName $params.workspaceName -Activate
+        Wait-Seconds 15
+
+        # Retrieve workspace keys
+        $keys = Get-AzSynapseWorkspaceKey -ResourceGroupName $params.rgname -WorkspaceName $params.workspaceName
+
+        # Verify
+        Assert-AreEqual 1 $keys.Count
+        Assert-AreEqual 'default' $keys[0].Name
+        Assert-True { $keys[0].IsActiveCustomerManagedKey }
+        Assert-AreEqual $params.encryptionKeyIdentifier $keys[0].KeyVaultUrl
+        Assert-AreEqual 'Microsoft.Synapse/workspaces/keys' $keys[0].Type
+
+        # Create a new workspaceKey
+        $secondKeyName = [guid]::NewGuid()
+        $secondKeyIdentifier = $params.secondEncryptionKeyIdentifier
+        $secondKey = New-AzSynapseWorkspaceKey -ResourceGroupName $params.rgname -WorkspaceName $params.workspaceName -Name $secondKeyName -EncryptionKeyIdentifier $secondKeyIdentifier
+        Wait-Seconds 15
+
+        # Verify
+        Assert-AreEqual $secondKeyName $secondKey.Name
+        Assert-False { $secondKey.IsActiveCustomerManagedKey }
+        Assert-AreEqual $secondKeyIdentifier $secondKey.KeyVaultUrl
+        Assert-AreEqual 'Microsoft.Synapse/workspaces/keys' $secondKey.Type
+
+        # Switch to the 2nd key as the active key
+        Update-AzSynapseWorkspace -ResourceGroupName $params.rgname -WorkspaceName $params.workspaceName -EncryptionKeyName $secondKeyName
+        Wait-Seconds 15
+        $updatedWorkspace = Get-AzSynapseWorkspace -ResourceGroupName $params.rgname -WorkspaceName $params.workspaceName
+
+        # Verify workspace's CMK
+        Assert-AreEqual $secondKeyName $updatedWorkspace.Encryption.CustomerManagedKeyDetails.Key.Name
+        Assert-AreEqual $secondKeyIdentifier $updatedWorkspace.Encryption.CustomerManagedKeyDetails.Key.KeyVaultUrl
+
+        # Verify the IsCMK property of the 2nd key. It should be $true now
+        $secondKey = Get-AzSynapseWorkspaceKey -ResourceGroupName $params.rgname -WorkspaceName $params.workspaceName -Name $secondKeyName
+        Assert-True { $secondKey.IsActiveCustomerManagedKey }
+        Assert-AreEqual $secondKeyName $secondKey.Name
+        Assert-AreEqual $secondKeyIdentifier $secondKey.KeyVaultUrl
+        Assert-AreEqual 'Microsoft.Synapse/workspaces/keys' $secondKey.Type
     }
 	finally
 	{
@@ -396,9 +452,26 @@ function Test-SynapseWorkspaceKey
 
 <#
 .SYNOPSIS
+Gets the values of the parameters used at the tests
+#>
+function Get-WorkspaceEncryptionTestEnvironmentParameters ($testSuffix)
+{
+	return @{ rgname = "ws-cmdlet-test-rg" +$testSuffix;
+			  workspaceName = "ws" +$testSuffix;
+			  storageAccountName = "wsstorage" + $testSuffix;
+			  fileSystemName = "wscmdletfs" + $testSuffix;
+			  loginName = "testlogin";
+			  pwd = "testp@ssMakingIt1007Longer";
+              location = "westcentralus";
+              encryptionKeyIdentifier = "<your-encryptionKeyIdentifier>";
+		}
+}
+
+<#
+.SYNOPSIS
 Creates the basic test environment needed to perform the Sql data security tests - resource group, server and database
 #>
-function Create-BasicTestEnvironmentWithParams ($params, $location)
+function Create-WorkspaceEncryptionTestEnvironmentWithParams ($params, $location)
 {
 	New-AzResourceGroup -Name $params.rgname -Location $location
     New-AzStorageAccount -ResourceGroupName $params.rgname -Name $params.storageAccountName -Location $location -SkuName Standard_GRS -Kind StorageV2 -EnableHierarchicalNamespace $true
@@ -406,7 +479,17 @@ function Create-BasicTestEnvironmentWithParams ($params, $location)
 	$workspaceLogin = $params.loginName
 	$workspacePassword = $params.pwd
 	$credentials = new-object System.Management.Automation.PSCredential($workspaceLogin, ($workspacePassword | ConvertTo-SecureString -asPlainText -Force))
-    New-AzSynapseWorkspace -ResourceGroupName  $params.rgname -WorkspaceName $params.workspaceName -Location $location -SqlAdministratorLoginCredential $credentials -DefaultDataLakeStorageAccountName $params.storageAccountName -DefaultDataLakeStorageFilesystem $params.fileSystemName
+    New-AzSynapseWorkspace -ResourceGroupName  $params.rgname -WorkspaceName $params.workspaceName -Location $location -SqlAdministratorLoginCredential $credentials -DefaultDataLakeStorageAccountName $params.storageAccountName -DefaultDataLakeStorageFilesystem $params.fileSystemName -EncrytionKeyIdentifier $params.encryptionKeyIdentifier
+}
+
+<#
+.SYNOPSIS
+Creates the test environment needed to perform the tests
+#>
+function Create-WorkspaceEncryptionTestEnvironment ($testSuffix)
+{
+	$params = Get-WorkspaceTestEnvironmentParameters $testSuffix
+	Create-WorkspaceEncryptionTestEnvironmentWithParams $params $params.location
 }
 
 <#
@@ -425,13 +508,13 @@ Gets the values of the parameters used at the tests
 #>
 function Get-WorkspaceTestEnvironmentParameters ($testSuffix)
 {
-	return @{ rgname = "sql-va-cmdlet-test-rg" +$testSuffix;
-			  workspaceName = "sqlvaws" +$testSuffix;
-			  storageAccountName = "sqlvastorage" + $testSuffix;
-			  fileSystemName = "sqlvacmdletfs" + $testSuffix;
+	return @{ rgname = "ws-cmdlet-test-rg" +$testSuffix;
+			  workspaceName = "ws" +$testSuffix;
+			  storageAccountName = "wsstorage" + $testSuffix;
+			  fileSystemName = "wscmdletfs" + $testSuffix;
 			  loginName = "testlogin";
 			  pwd = "testp@ssMakingIt1007Longer";
-              location = "westcentralus"
+              location = "westcentralus";
 		}
 }
 

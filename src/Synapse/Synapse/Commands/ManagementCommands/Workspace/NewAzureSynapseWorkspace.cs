@@ -6,8 +6,8 @@ using System.Management.Automation;
 using Microsoft.Azure.Commands.Synapse.Properties;
 using Microsoft.Azure.Commands.ResourceManager.Common.Tags;
 using Microsoft.Azure.Commands.Synapse.Common;
-using Microsoft.Azure.Commands.Synapse.Models.Exceptions;
 using Microsoft.WindowsAzure.Commands.Utilities.Common;
+using Microsoft.Azure.Commands.Common.Exceptions;
 
 namespace Microsoft.Azure.Commands.Synaspe
 {
@@ -58,9 +58,13 @@ namespace Microsoft.Azure.Commands.Synaspe
         [ValidateNotNull]
         public PSManagedVirtualNetworkSettings ManagedVirtualNetwork { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = HelpMessages.EncryptionKeyVaultUrl)]
+        [Parameter(Mandatory = false, HelpMessage = HelpMessages.EncryptionKeyName)]
         [ValidateNotNullOrEmpty]
-        public string EncryptionKeyVaultUrl { get; set; }
+        public string EncryptionKeyName { get; set; } = SynapseConstants.DefaultName;
+
+        [Parameter(Mandatory = false, HelpMessage = HelpMessages.EncryptionKeyIdentifier)]
+        [ValidateNotNullOrEmpty]
+        public string EncryptionKeyIdentifier { get; set; }
 
         [Parameter(Mandatory = false, HelpMessage = HelpMessages.AsJob)]
         public SwitchParameter AsJob { get; set; }
@@ -71,10 +75,10 @@ namespace Microsoft.Azure.Commands.Synaspe
             {
                 if (SynapseAnalyticsClient.GetWorkspace(ResourceGroupName, Name) != null)
                 {
-                    throw new SynapseException(string.Format(Resources.SynapseWorkspaceExists, this.Name, this.ResourceGroupName));
+                    throw new AzPSApplicationException(string.Format(Resources.SynapseWorkspaceExists, this.Name, this.ResourceGroupName));
                 }
             }
-            catch (NotFoundException ex)
+            catch (AzPSResourceNotFoundCloudException ex)
             {
                 var innerException = ex.InnerException as ErrorContractException;
                 if (innerException.Body?.Error?.Code == "ResourceNotFound" || innerException.Body?.Error?.Message.Contains("ResourceNotFound") == true)
@@ -113,14 +117,14 @@ namespace Microsoft.Azure.Commands.Synaspe
                 ManagedVirtualNetwork = this.IsParameterBound(c => c.ManagedVirtualNetwork) ? SynapseConstants.DefaultName : null,
                 Location = this.Location,
                 ManagedVirtualNetworkSettings = this.IsParameterBound(c => c.ManagedVirtualNetwork) ? this.ManagedVirtualNetwork.ToSdkObject() : null,
-                Encryption = this.IsParameterBound(c => c.EncryptionKeyVaultUrl) ? new EncryptionDetails
+                Encryption = this.IsParameterBound(c => c.EncryptionKeyIdentifier) ? new EncryptionDetails
                 {
                     Cmk = new CustomerManagedKeyDetails
                     {
                         Key = new WorkspaceKeyDetails
                         {
-                            Name = SynapseConstants.DefaultName,
-                            KeyVaultUrl = this.EncryptionKeyVaultUrl
+                            Name = this.EncryptionKeyName,
+                            KeyVaultUrl = this.EncryptionKeyIdentifier
                         }
                     }
                 } : null
@@ -128,7 +132,7 @@ namespace Microsoft.Azure.Commands.Synaspe
 
             if (ShouldProcess(Name, string.Format(Resources.CreatingSynapseWorkspace, this.ResourceGroupName, this.Name)))
             {
-                var workspace = new PSSynapseWorkspace(SynapseAnalyticsClient.CreateOrUpdateWorkspace(
+                var workspace = new PSSynapseWorkspace(SynapseAnalyticsClient.CreateWorkspace(
                     this.ResourceGroupName,
                     this.Name,
                     createParams));

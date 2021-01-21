@@ -28,12 +28,8 @@ namespace Microsoft.Azure.Commands.Synapse
         [ValidateNotNullOrEmpty]
         public string WorkspaceName { get; set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = DeleteByNameParameterSet, HelpMessage = HelpMessages.KeyName)]
-        [Parameter(Mandatory = true, ParameterSetName = DeleteByParentObjectParameterSet, HelpMessage = HelpMessages.KeyName)]
-        [ResourceNameCompleter(
-            ResourceTypes.Key,
-            nameof(ResourceGroupName),
-            nameof(WorkspaceName))]
+        [Parameter(Mandatory = true, ParameterSetName = DeleteByNameParameterSet, HelpMessage = HelpMessages.EncryptionKeyName)]
+        [Parameter(Mandatory = true, ParameterSetName = DeleteByParentObjectParameterSet, HelpMessage = HelpMessages.EncryptionKeyName)]
         [Alias(nameof(SynapseConstants.KeyName))]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }

@@ -1,7 +1,7 @@
-﻿using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
+﻿using Microsoft.Azure.Commands.Common.Exceptions;
+using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
 using Microsoft.Azure.Commands.Synapse.Common;
 using Microsoft.Azure.Commands.Synapse.Models;
-using Microsoft.Azure.Commands.Synapse.Models.Exceptions;
 using Microsoft.Azure.Commands.Synapse.Models.WorkspaceKey;
 using Microsoft.Azure.Commands.Synapse.Properties;
 using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
@@ -35,16 +35,16 @@ namespace Microsoft.Azure.Commands.Synapse.Commands.ManagementCommands
         [ValidateNotNull]
         public PSSynapseWorkspace WorkspaceObject { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = HelpMessages.WorkspaceKeyName)]
+        [Parameter(Mandatory = true, HelpMessage = HelpMessages.WorkspaceKeyName)]
         [Alias(nameof(SynapseConstants.KeyName))]
         [ValidateNotNullOrEmpty]
         public string Name { get; set; }
 
-        [Parameter(Mandatory = true, HelpMessage = HelpMessages.EncryptionKeyVaultUrl)]
-        public string KeyVaultUrl { get;  set; }
+        [Parameter(Mandatory = true, HelpMessage = HelpMessages.EncryptionKeyIdentifier)]
+        public string EncryptionKeyIdentifier { get;  set; }
 
         [Parameter(Mandatory = false, HelpMessage = HelpMessages.IsActiveCustomerManagedKey)]
-        public SwitchParameter DoNotActivateCustomerManagedKey { get; set; }
+        public SwitchParameter Activate { get; set; }
 
         public override void ExecuteCmdlet()
         {
@@ -62,19 +62,19 @@ namespace Microsoft.Azure.Commands.Synapse.Commands.ManagementCommands
             var existingWorkspace = this.SynapseAnalyticsClient.GetWorkspaceOrDefault(this.ResourceGroupName, this.WorkspaceName);
             if (existingWorkspace == null)
             {
-                throw new SynapseException(string.Format(Resources.WorkspaceDoesNotExist, this.WorkspaceName));
+                throw new AzPSResourceNotFoundCloudException(string.Format(Resources.WorkspaceDoesNotExist, this.WorkspaceName));
             }
 
-            var existingKey = this.SynapseAnalyticsClient.GetKey(this.ResourceGroupName, this.WorkspaceName, this.Name);
+            var existingKey = this.SynapseAnalyticsClient.GetKeyOrDefault(this.ResourceGroupName, this.WorkspaceName, this.Name);
             if (existingKey != null)
             {
-                throw new SynapseException(string.Format(Resources.WorkspaceKeyExists, this.Name, this.ResourceGroupName, this.WorkspaceName));
+                throw new AzPSInvalidOperationException(string.Format(Resources.WorkspaceKeyExists, this.Name, this.ResourceGroupName, this.WorkspaceName));
             }
 
             var createParams = new Key
             {
-                IsActiveCMK = !this.DoNotActivateCustomerManagedKey.IsPresent,
-                KeyVaultUrl = this.KeyVaultUrl
+                IsActiveCMK = this.Activate.IsPresent,
+                KeyVaultUrl = this.EncryptionKeyIdentifier
             };
 
             if (!this.IsParameterBound(c => c.Name))

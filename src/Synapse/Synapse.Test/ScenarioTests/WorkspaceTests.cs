@@ -62,7 +62,7 @@ namespace Microsoft.Azure.Commands.Synapse.Test.ScenarioTests
                 "Test-SynapseManagedIdentitySqlControlSetting");
         }
 
-        [Fact]
+        [Fact(Skip = "This test requires to create KeyVault beforehand and calls Graph API.")]
         [Trait(Category.AcceptanceType, Category.CheckIn)]
         public void TestSynapseWorkspaceKey()
         {

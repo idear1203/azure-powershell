@@ -1,4 +1,5 @@
 ﻿using Azure.Analytics.Synapse.AccessControl.Models;
+using Microsoft.Azure.Commands.Common.Exceptions;
 using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
 using Microsoft.Azure.Commands.Synapse.Common;
 using Microsoft.Azure.Commands.Synapse.Models;
@@ -71,7 +72,7 @@ namespace Microsoft.Azure.Commands.Synapse
                     PSSynapseRole role = roleDefinitions.SingleOrDefault(element => element.Name == this.Name);
                     if (role == null)
                     {
-                        throw new InvalidOperationException(String.Format(Resources.RoleDefinitionNameDoesNotExist, this.Name));
+                        throw new AzPSInvalidOperationException(String.Format(Resources.RoleDefinitionNameDoesNotExist, this.Name));
                     }
                     WriteObject(role);
                 }

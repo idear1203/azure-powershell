@@ -1,8 +1,8 @@
 ﻿using Azure.Analytics.Synapse.Spark;
 using Azure.Analytics.Synapse.Spark.Models;
 using Microsoft.Azure.Commands.Common.Authentication.Abstractions;
+using Microsoft.Azure.Commands.Common.Exceptions;
 using Microsoft.Azure.Commands.Synapse.Common;
-using Microsoft.Azure.Commands.Synapse.Models.Exceptions;
 using Microsoft.Azure.Commands.Synapse.Properties;
 using Microsoft.Azure.Management.Synapse.Models;
 using Microsoft.Rest.Azure;
@@ -22,7 +22,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
         {
             if (context == null)
             {
-                throw new SynapseException(Resources.InvalidDefaultSubscription);
+                throw new AzPSInvalidOperationException(Resources.InvalidDefaultSubscription);
             }
 
             string suffix = context.Environment.GetEndpoint(AzureEnvironment.ExtendedEndpoint.AzureSynapseAnalyticsEndpointSuffix);
@@ -233,7 +233,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
 
                 if (session == null)
                 {
-                    throw new SynapseException(string.Format(
+                    throw new AzPSInvalidOperationException(string.Format(
                         Properties.Resources.FailedToDiscoverSparkStatement,
                         statementId,
                         workspaceName,

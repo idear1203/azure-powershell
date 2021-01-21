@@ -1,8 +1,8 @@
-﻿using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
+﻿using Microsoft.Azure.Commands.Common.Exceptions;
+using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
 using Microsoft.Azure.Commands.ResourceManager.Common.Tags;
 using Microsoft.Azure.Commands.Synapse.Common;
 using Microsoft.Azure.Commands.Synapse.Models;
-using Microsoft.Azure.Commands.Synapse.Models.Exceptions;
 using Microsoft.Azure.Commands.Synapse.Models.WorkspaceKey;
 using Microsoft.Azure.Commands.Synapse.Properties;
 using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
@@ -32,15 +32,11 @@ namespace Microsoft.Azure.Commands.Synapse
         [ValidateNotNullOrEmpty]
         public string WorkspaceName { get; set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = UpdateByNameParameterSet, HelpMessage = HelpMessages.KeyName)]
-        [Parameter(Mandatory = true, ParameterSetName = UpdateByParentObjectParameterSet, HelpMessage = HelpMessages.KeyName)]
-        [ResourceNameCompleter(
-            ResourceTypes.Key,
-            nameof(ResourceGroupName),
-            nameof(WorkspaceName))]
+        [Parameter(Mandatory = false, ParameterSetName = UpdateByNameParameterSet, HelpMessage = HelpMessages.EncryptionKeyName)]
+        [Parameter(Mandatory = false, ParameterSetName = UpdateByParentObjectParameterSet, HelpMessage = HelpMessages.EncryptionKeyName)]
         [Alias(nameof(SynapseConstants.KeyName))]
         [ValidateNotNullOrEmpty]
-        public string Name { get; set; }
+        public string Name { get; set; } = SynapseConstants.DefaultName;
 
         [Parameter(ValueFromPipeline = true, ParameterSetName = UpdateByParentObjectParameterSet,
             Mandatory = true, HelpMessage = HelpMessages.WorkspaceObject)]
@@ -57,11 +53,11 @@ namespace Microsoft.Azure.Commands.Synapse
         [ValidateNotNullOrEmpty]
         public string ResourceId { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = HelpMessages.EncryptionKeyVaultUrl)]
-        public string KeyVaultUrl { get;  set; }
+        [Parameter(Mandatory = false, HelpMessage = HelpMessages.EncryptionKeyIdentifier)]
+        public string EncryptionKeyIdentifier { get;  set; }
 
         [Parameter(Mandatory = false, HelpMessage = HelpMessages.IsActiveCustomerManagedKey)]
-        public SwitchParameter DoNotActivateCustomerManagedKey { get; set; }
+        public SwitchParameter Activate { get; set; }
 
         [Parameter(Mandatory = false, HelpMessage = HelpMessages.AsJob)]
         public SwitchParameter AsJob { get; set; }
@@ -109,13 +105,13 @@ namespace Microsoft.Azure.Commands.Synapse
 
             if (existingKey == null)
             {
-                throw new SynapseException(string.Format(Resources.FailedToDiscoverKey, this.Name, this.ResourceGroupName, this.WorkspaceName));
+                throw new AzPSInvalidOperationException(string.Format(Resources.FailedToDiscoverKey, this.Name, this.ResourceGroupName, this.WorkspaceName));
             }
 
             var updateParams = new Key
             {
-                IsActiveCMK = this.IsParameterBound(c => c.DoNotActivateCustomerManagedKey) ? !this.DoNotActivateCustomerManagedKey.IsPresent : existingKey.IsActiveCMK,
-                KeyVaultUrl = this.IsParameterBound(c => c.KeyVaultUrl) ? this.KeyVaultUrl : existingKey.KeyVaultUrl
+                IsActiveCMK = this.IsParameterBound(c => c.Activate) ? this.Activate.IsPresent : existingKey.IsActiveCMK,
+                KeyVaultUrl = this.IsParameterBound(c => c.EncryptionKeyIdentifier) ? this.EncryptionKeyIdentifier : existingKey.KeyVaultUrl
             };
 
             if (this.ShouldProcess(this.Name, string.Format(Resources.UpdatingWorkspaceKey, this.Name, this.ResourceGroupName, this.WorkspaceName)))

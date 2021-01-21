@@ -409,13 +409,13 @@ For more information, see https://docs.microsoft.com/en-us/sql/relational-databa
 
         public const string AllowedAadTenantIdsForLinking = "The allowed AAD tenant IDs for linking.";
 
-        public const string EncryptionKeyVaultUrl = "The Key Vault Url of the workspace key.";
+        public const string EncryptionKeyName = "The workspace encryption key name.";
+
+        public const string EncryptionKeyIdentifier = "Key identifier should be in the format of: https://{keyvaultname}.vault.azure.net/keys/{keyname}.";
 
         public const string WorkspaceKeyName = "The name of the workspace key.";
 
         public const string IsActiveCustomerManagedKey = "Indicates whether to activate the workspace after a customer managed key is provided.";
-
-        public const string KeyName = "The name of workspace key.";
 
         public const string KeyResourceId = "The resource identifier of Synapse SQL Pool.";
 
