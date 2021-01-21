@@ -65,6 +65,9 @@ Gets an integration runtime node information.
 ### [Get-AzSynapseLinkedService](Get-AzSynapseLinkedService.md)
 Gets information about linked services in workspace.
 
+### [Get-AzSynapseManagedIdentitySqlControlSetting](Get-AzSynapseManagedIdentitySqlControlSetting.md)
+Gets Managed Identity Sql Control Settings
+
 ### [Get-AzSynapseNotebook](Get-AzSynapseNotebook.md)
 Gets information about notebooks in a workspace.
 
@@ -106,9 +109,6 @@ Gets the auditing settings of an Azure Synapse Analytics Workspace.
 
 ### [Get-AzSynapseSqlDatabase](Get-AzSynapseSqlDatabase.md)
 This feature is in a limited preview, initially accessible only to certain subscriptions. Gets a Synapse Analytics SQL database.
-
-### [Get-AzSynapseSqlManagedIdentityControlAccess](Get-AzSynapseSqlManagedIdentityControlAccess.md)
-Gets managed identity Sql control settings.
 
 ### [Get-AzSynapseSqlPool](Get-AzSynapseSqlPool.md)
 Gets a Synapse Analytics SQL pool.
@@ -158,8 +158,8 @@ Get the status of the subscription for the event trigger to the specified extern
 ### [Get-AzSynapseWorkspace](Get-AzSynapseWorkspace.md)
 Gets a Synapse Analytics workspace.
 
-### [Grant-AzSynapseSqlManagedIdentityControlAccess](Grant-AzSynapseSqlManagedIdentityControlAccess.md)
-Grants workspace's system-assigned managed identity Sql control access.
+### [Get-AzSynapseWorkspaceKey](Get-AzSynapseWorkspaceKey.md)
+Gets a workspace key.
 
 ### [Invoke-AzSynapseIntegrationRuntimeUpgrade](Invoke-AzSynapseIntegrationRuntimeUpgrade.md)
 Upgrades self-hosted integration runtime.
@@ -175,6 +175,9 @@ Creates a Synapse Analytics Firewall Rule.
 
 ### [New-AzSynapseIntegrationRuntimeKey](New-AzSynapseIntegrationRuntimeKey.md)
 Regenerate self-hosted integration runtime key.
+
+### [New-AzSynapseManagedVirtualNetworkConfig](New-AzSynapseManagedVirtualNetworkConfig.md)
+Creates managed virtual network config.
 
 ### [New-AzSynapseRoleAssignment](New-AzSynapseRoleAssignment.md)
 Creates a Synapse Analytics role assignment.
@@ -193,6 +196,9 @@ Creates a new restore point in an Azure Synapse Analytics SQL pool.
 
 ### [New-AzSynapseWorkspace](New-AzSynapseWorkspace.md)
 Creates a Synapse Analytics workspace.
+
+### [New-AzSynapseWorkspaceKey](New-AzSynapseWorkspaceKey.md)
+Creates a workspace key.
 
 ### [Remove-AzSynapseDataFlow](Remove-AzSynapseDataFlow.md)
 Removes a data flow from workspace.
@@ -248,6 +254,9 @@ Unsubscribe the event trigger to external service events.
 ### [Remove-AzSynapseWorkspace](Remove-AzSynapseWorkspace.md)
 Deletes a Synapse Analytics workspace.
 
+### [Remove-AzSynapseWorkspaceKey](Remove-AzSynapseWorkspaceKey.md)
+Deletes a workspace key.
+
 ### [Reset-AzSynapseSparkSessionTimeout](Reset-AzSynapseSparkSessionTimeout.md)
 Resets timeout of a Synapse Analytics Spark session.
 
@@ -275,9 +284,6 @@ Restores a Synapse Analytics SQL pool.
 ### [Resume-AzSynapseSqlPool](Resume-AzSynapseSqlPool.md)
 Resumes a Synapse Analytics SQL pool.
 
-### [Revoke-AzSynapseSqlManagedIdentityControlAccess](Revoke-AzSynapseSqlManagedIdentityControlAccess.md)
-Revokes workspace's system-assigned managed identity Sql control access.
-
 ### [Set-AzSynapseDataFlow](Set-AzSynapseDataFlow.md)
 Creates or updates a data flow in workspace.
 
@@ -289,6 +295,9 @@ Updates an integration runtime.
 
 ### [Set-AzSynapseLinkedService](Set-AzSynapseLinkedService.md)
 Links a data store or a cloud service to workspace.
+
+### [Set-AzSynapseManagedIdentitySqlControlSetting](Set-AzSynapseManagedIdentitySqlControlSetting.md)
+Updates managed identity SQL control settings to workspace.
 
 ### [Set-AzSynapseNotebook](Set-AzSynapseNotebook.md)
 Creates or updates a notebook in a workspace.
@@ -371,6 +380,9 @@ Updates an integration runtime.
 ### [Update-AzSynapseIntegrationRuntimeNode](Update-AzSynapseIntegrationRuntimeNode.md)
 Updates self-hosted integration runtime node.
 
+### [Update-AzSynapseManagedVirtualNetworkConfig](Update-AzSynapseManagedVirtualNetworkConfig.md)
+Updates managed virtual network config to workspace.
+
 ### [Update-AzSynapseSparkPool](Update-AzSynapseSparkPool.md)
 Updates a Synapse Analytics Spark pool.
 
@@ -394,6 +406,9 @@ Updates the vulnerability assessment settings of a workspace.
 
 ### [Update-AzSynapseWorkspace](Update-AzSynapseWorkspace.md)
 Updates a Synapse Analytics workspace.
+
+### [Update-AzSynapseWorkspaceKey](Update-AzSynapseWorkspaceKey.md)
+Updates a workspace key.
 
 ### [Wait-AzSynapseSparkJob](Wait-AzSynapseSparkJob.md)
 Waits for a Synapse Analytics Spark job to complete.
