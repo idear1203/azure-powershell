@@ -75,7 +75,7 @@ namespace Microsoft.Azure.Commands.Synaspe
             {
                 if (SynapseAnalyticsClient.GetWorkspace(ResourceGroupName, Name) != null)
                 {
-                    throw new AzPSApplicationException(string.Format(Resources.SynapseWorkspaceExists, this.Name, this.ResourceGroupName));
+                    throw new AzPSInvalidOperationException(string.Format(Resources.SynapseWorkspaceExists, this.Name, this.ResourceGroupName));
                 }
             }
             catch (AzPSResourceNotFoundCloudException ex)
@@ -116,7 +116,7 @@ namespace Microsoft.Azure.Commands.Synaspe
                 SqlAdministratorLoginPassword = this.SqlAdministratorLoginCredential.GetNetworkCredential().Password,
                 ManagedVirtualNetwork = this.IsParameterBound(c => c.ManagedVirtualNetwork) ? SynapseConstants.DefaultName : null,
                 Location = this.Location,
-                ManagedVirtualNetworkSettings = this.IsParameterBound(c => c.ManagedVirtualNetwork) ? this.ManagedVirtualNetwork.ToSdkObject() : null,
+                ManagedVirtualNetworkSettings = this.IsParameterBound(c => c.ManagedVirtualNetwork) ? this.ManagedVirtualNetwork?.ToSdkObject() : null,
                 Encryption = this.IsParameterBound(c => c.EncryptionKeyIdentifier) ? new EncryptionDetails
                 {
                     Cmk = new CustomerManagedKeyDetails

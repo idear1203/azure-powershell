@@ -72,19 +72,19 @@ namespace Microsoft.Azure.Commands.Synapse.Common
             return AzureSession.Instance.DataStore.ReadFileAsText(powerShellDestinationPath);
         }
 
-        internal static Exception CreateSynapseException(ErrorContractException ex)
+        internal static Exception CreateAzurePowerShellException(ErrorContractException ex)
         {
             var message = GetAggregatedErrorMessage(ex.Message, ex.Body?.Error?.Message, ex.Body?.Error?.Details?.Select(d => d.Message));
-            return CreateAzPSException(ex.Response.StatusCode, message, ex);
+            return CreateAzurePowerShellException(ex.Response.StatusCode, message, ex);
         }
 
-        internal static Exception CreateSynapseException(this CloudException ex)
+        internal static Exception CreateAzurePowerShellException(this CloudException ex)
         {
             var message = GetAggregatedErrorMessage(ex.Message, ex.Body?.Message, ex.Body?.Details?.Select(d => d.Message));
-            return CreateAzPSException(ex.Response.StatusCode, message, ex);
+            return CreateAzurePowerShellException(ex.Response.StatusCode, message, ex);
         }
 
-        internal static Exception CreateAzPSException(HttpStatusCode statusCode, string message, Exception ex)
+        internal static Exception CreateAzurePowerShellException(HttpStatusCode statusCode, string message, Exception ex)
         {
             switch (statusCode)
             {
@@ -98,6 +98,7 @@ namespace Microsoft.Azure.Commands.Synapse.Common
                     {
                         return new AzPSException(message, ErrorKind.UserError, ex);
                     }
+
                     // Handle server side exceptions
                     else if (((int)statusCode) >= 500)
                     {

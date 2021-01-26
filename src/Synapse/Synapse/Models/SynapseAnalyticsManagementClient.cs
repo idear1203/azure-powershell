@@ -124,7 +124,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -136,7 +136,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -153,7 +153,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -181,7 +181,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -211,7 +211,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
                 }
                 else
                 {
-                    throw GetSynapseException(ex);
+                    throw GetAzurePowerShellException(ex);
                 }
             }
         }
@@ -236,7 +236,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -253,7 +253,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -300,7 +300,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -363,7 +363,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -375,7 +375,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -544,7 +544,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -581,7 +581,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -738,7 +738,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1022,7 +1022,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1053,7 +1053,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1079,7 +1079,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1098,7 +1098,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1114,7 +1114,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1250,7 +1250,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1269,7 +1269,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1281,7 +1281,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1293,7 +1293,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1312,7 +1312,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1328,7 +1328,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1365,7 +1365,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1382,7 +1382,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1394,7 +1394,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1406,7 +1406,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1423,7 +1423,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1501,7 +1501,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1513,7 +1513,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (CloudException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1529,7 +1529,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1546,7 +1546,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1647,7 +1647,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1664,7 +1664,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1686,7 +1686,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1746,7 +1746,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1763,7 +1763,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1788,7 +1788,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1805,7 +1805,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1827,7 +1827,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1865,7 +1865,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1887,7 +1887,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1903,7 +1903,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1920,7 +1920,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1950,7 +1950,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1967,7 +1967,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1989,7 +1989,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2018,7 +2018,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2089,7 +2089,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2119,7 +2119,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2136,7 +2136,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2158,7 +2158,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2187,7 +2187,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2204,7 +2204,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2222,7 +2222,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2244,7 +2244,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2328,7 +2328,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
 
         }
@@ -2396,7 +2396,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
 
         }
@@ -2422,7 +2422,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
             catch (NullReferenceException)
             {
@@ -2512,7 +2512,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2537,7 +2537,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2562,7 +2562,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2585,7 +2585,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2613,7 +2613,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2638,7 +2638,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
             catch (CloudException e)
             {
@@ -2673,7 +2673,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2700,7 +2700,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2758,7 +2758,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2789,7 +2789,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
 
             await _synapseManagementClient.IntegrationRuntimeCredentials.SyncWithHttpMessagesAsync(
@@ -2819,7 +2819,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
 
             var response = await _synapseManagementClient.IntegrationRuntimes.UpdateAsync(
@@ -2850,7 +2850,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
 
             return await _synapseManagementClient.IntegrationRuntimeNodes.UpdateAsync(
@@ -2873,7 +2873,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2890,7 +2890,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2920,7 +2920,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2942,7 +2942,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2980,14 +2980,14 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             return resourceList;
         }
 
-        private static Exception GetSynapseException(ErrorContractException ex)
+        private static Exception GetAzurePowerShellException(ErrorContractException ex)
         {
-            return Utils.CreateSynapseException(ex);
+            return Utils.CreateAzurePowerShellException(ex);
         }
 
-        private static Exception GetSynapseException(CloudException ex)
+        private static Exception GetAzurePowerShellException(CloudException ex)
         {
-            return Utils.CreateSynapseException(ex);
+            return Utils.CreateAzurePowerShellException(ex);
         }
 
         #endregion

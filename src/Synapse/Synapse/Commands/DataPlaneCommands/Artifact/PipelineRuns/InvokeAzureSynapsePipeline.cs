@@ -93,7 +93,7 @@ namespace Microsoft.Azure.Commands.Synapse
                 }
                 catch (InvalidCastException ex)
                 {
-                    throw new AzPSApplicationException(Resources.InvalidCastParameterKeyExceptionMessage, ex);
+                    throw new AzPSInvalidOperationException(Resources.InvalidCastParameterKeyExceptionMessage, ex);
                 }
             }
             else
