@@ -1,14 +1,14 @@
 ---
 external help file: Microsoft.Azure.PowerShell.Cmdlets.Synapse.dll-Help.xml
 Module Name: Az.Synapse
-online version:
+online version: https://docs.microsoft.com/en-us/powershell/module/az.synapse/get-azsynapsemanagedidentitysqlcontrolsetting
 schema: 2.0.0
 ---
 
 # Get-AzSynapseManagedIdentitySqlControlSetting
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets Managed Identity Sql Control Settings.
 
 ## SYNTAX
 
@@ -31,16 +31,31 @@ Get-AzSynapseManagedIdentitySqlControlSetting -ResourceId <String> [-DefaultProf
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The **Get-AzSynapseManagedIdentitySqlControlSetting** cmdlet gets gets the managed identity SQL control settings of an Azure Synapse Analytics workspace.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-AzSynapseManagedIdentitySqlControlSetting -WorkspaceName testsynapseworkspace
 ```
 
-{{ Add example description here }}
+This command gets the managed identity SQL control setting for a workspace.
+
+### Example 2
+```powershell
+PS C:\> $ws = Get-AzSynapseWorkspace -Name ContosoWorkspace
+PS C:\> $ws | Get-AzSynapseManagedIdentitySqlControlSetting
+```
+
+This command gets the managed identity SQL control setting for a workspace through pipeline.
+
+### Example 2
+```powershell
+PS C:\> Get-AzSynapseManagedIdentitySqlControlSetting -ResourceId '/subscriptions/051ddeca-1ed6-4d8b-ba6f-1ff561e5f3b3/resourcegroups/zzy-test-rg/providers/Microsoft.Synapse/workspaces/testsynapseworkspace'
+```
+
+This command gets the managed identity SQL control setting for a workspace through workspace resource ID.
 
 ## PARAMETERS
 
