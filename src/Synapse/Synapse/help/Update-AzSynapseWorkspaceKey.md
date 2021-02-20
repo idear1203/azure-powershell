@@ -8,7 +8,7 @@ schema: 2.0.0
 # Update-AzSynapseWorkspaceKey
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Updates a workspace key.
 
 ## SYNTAX
 
@@ -39,16 +39,31 @@ Update-AzSynapseWorkspaceKey -ResourceId <String> [-EncryptionKeyIdentifier <Str
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This **Update-AzSynapseWorkspaceKey** updates a workspace key.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Update-AzSynapseWorkspaceKey -WorkspaceName ContosoWorkspace -Name ContosoKeyName -Activate
 ```
 
-{{ Add example description here }}
+This command activates a workspace key under an Azure Synapse Analytics workspace.
+
+### Example 2
+```powershell
+PS C:\> $ws = Get-AzSynapseWorkspace -Name ContosoWorkspace
+PS C:\> $ws | Update-AzSynapseWorkspaceKey -Name ContosoKeyName -Activate
+```
+
+This command activates a workspace key under an Azure Synapse Analytics workspace through pipeline.
+
+### Example 3
+```powershell
+PS C:\> Remove-AzSynapseWorkspaceKey -ResourceId /subscriptions/21686af7-58ec-4f4d-9c68-f431f4db4edd/resourceGroups/ContosoResourceGroup/providers/Microsoft.Synapse/workspaces/ContosoWorkspace/keys/ContosoKeyName
+```
+
+This command deletes an Azure Synapse Analytics workspace key through pipeline with the specified resource ID.
 
 ## PARAMETERS
 

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Remove-AzSynapseWorkspaceKey
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Deletes a workspace key.
 
 ## SYNTAX
 
@@ -37,16 +37,31 @@ Remove-AzSynapseWorkspaceKey -ResourceId <String> [-PassThru] [-AsJob] [-Force]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The **Remove-AzSynapseWorkspaceKey** removes a workspace key
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-AzSynapseWorkspaceKey -WorkspaceName ContosoWorkspace -Name ContosoKeyName
 ```
 
-{{ Add example description here }}
+This command deletes a workspace key under an Azure Synapse Analytics workspace.
+
+### Example 2
+```powershell
+PS C:\> $ws = Get-AzSynapseWorkspace -Name ContosoWorkspace
+PS C:\> $ws | Remove-AzSynapseWorkspaceKey -Name ContosoKeyName
+```
+
+This command deletes a workspace key under an Azure Synapse Analytics workspace through pipeline.
+
+### Example 3
+```powershell
+PS C:\> Remove-AzSynapseWorkspaceKey -ResourceId /subscriptions/21686af7-58ec-4f4d-9c68-f431f4db4edd/resourceGroups/ContosoResourceGroup/providers/Microsoft.Synapse/workspaces/ContosoWorkspace/keys/ContosoKeyName
+```
+
+This command deletes an Azure Synapse Analytics workspace key through pipeline with the specified resource ID.
 
 ## PARAMETERS
 

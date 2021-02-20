@@ -177,7 +177,7 @@ Creates a Synapse Analytics Firewall Rule.
 Regenerate self-hosted integration runtime key.
 
 ### [New-AzSynapseManagedVirtualNetworkConfig](New-AzSynapseManagedVirtualNetworkConfig.md)
-Creates managed virtual network config.
+Creates managed virtual network configuration.
 
 ### [New-AzSynapseRoleAssignment](New-AzSynapseRoleAssignment.md)
 Creates a Synapse Analytics role assignment.
@@ -381,7 +381,7 @@ Updates an integration runtime.
 Updates self-hosted integration runtime node.
 
 ### [Update-AzSynapseManagedVirtualNetworkConfig](Update-AzSynapseManagedVirtualNetworkConfig.md)
-Updates managed virtual network config to workspace.
+Updates managed virtual network configuration to workspace.
 
 ### [Update-AzSynapseSparkPool](Update-AzSynapseSparkPool.md)
 Updates a Synapse Analytics Spark pool.

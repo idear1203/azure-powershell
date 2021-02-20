@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-AzSynapseManagedVirtualNetworkConfig
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates managed virtual network configuration.
 
 ## SYNTAX
 
@@ -18,16 +18,19 @@ New-AzSynapseManagedVirtualNetworkConfig [-PreventDataExfiltration] [-AllowedAad
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This **New-AzSynapseManagedVirtualNetworkConfig** cmdlets creates a managed virtual network configuration.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> $config = New-AzSynapseManagedVirtualNetworkConfig -PreventDataExfiltration -AllowedAadTenantIdsForLinking ContosoTenantId
+PS C:\> $password = ConvertTo-SecureString "Password123!" -AsPlainText -Force
+PS C:\> $creds = New-Object System.Management.Automation.PSCredential ("ContosoUser", $password)
+PS C:\> New-AzSynapseWorkspace -ResourceGroupName ContosoResourceGroup -Name ContosoWorkspace -Location northeurope -DefaultDataLakeStorageAccountName ContosoAdlGen2Storage -DefaultDataLakeStorageFilesystem ContosoFileSystem -SqlAdministratorLoginCredential $creds -ManagedVirtualNetwork $config
 ```
 
-{{ Add example description here }}
+The first command creates a managed virtual network configuration. Then the rest methods uses the configuration to creates a new Synapse workspace.
 
 ## PARAMETERS
 

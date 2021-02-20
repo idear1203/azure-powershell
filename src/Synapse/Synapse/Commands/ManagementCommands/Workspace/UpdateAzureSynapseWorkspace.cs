@@ -29,7 +29,7 @@ namespace Microsoft.Azure.Commands.Synapse
         [ValidateNotNullOrEmpty]
         public string ResourceGroupName { get; set; }
 
-        [Parameter(ParameterSetName = SetByNameParameterSet, Mandatory = false, HelpMessage = HelpMessages.WorkspaceName)]
+        [Parameter(ParameterSetName = SetByNameParameterSet, Mandatory = true, HelpMessage = HelpMessages.WorkspaceName)]
         [Alias(SynapseConstants.WorkspaceName)]
         [ResourceNameCompleter(ResourceTypes.Workspace, nameof(ResourceGroupName))]
         [ValidateNotNullOrEmpty]

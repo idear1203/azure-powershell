@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-AzSynapseWorkspaceKey
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates a workspace key.
 
 ## SYNTAX
 
@@ -27,16 +27,16 @@ New-AzSynapseWorkspaceKey -WorkspaceObject <PSSynapseWorkspace> -Name <String>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This **New-AzSynapseWorkspaceKey** cmdlet creates a workspace key.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-AzSynapseWorkspaceKey -ResourceGroupName ContosoResourceGroup -WorkspaceName ContosoWorkspace -Name ContosoWorkspaceKey -EncryptionKeyIdentifier https://<key-vault-url>/keys/<key-name>
 ```
 
-{{ Add example description here }}
+This command creates a workspace key named ContosoWorkspaceKey under workspace ContosoWorkspace.
 
 ## PARAMETERS
 
