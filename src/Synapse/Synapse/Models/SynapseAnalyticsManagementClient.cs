@@ -36,6 +36,7 @@ using System.Threading.Tasks;
 using TriggerType = Microsoft.Azure.Commands.Synapse.VulnerabilityAssessment.Model.TriggerType;
 using Action = System.Action;
 using ResourceIdentityType = Microsoft.Azure.Management.Synapse.Models.ResourceIdentityType;
+using Microsoft.Azure.Commands.Synapse.Model;
 
 namespace Microsoft.Azure.Commands.Synapse.Models
 {
@@ -1558,7 +1559,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
           
         }
@@ -1571,7 +1572,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -1584,7 +1585,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2032,7 +2033,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2045,7 +2046,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2059,7 +2060,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
@@ -2072,7 +2073,7 @@ namespace Microsoft.Azure.Commands.Synapse.Models
             }
             catch (ErrorContractException ex)
             {
-                throw GetSynapseException(ex);
+                throw GetAzurePowerShellException(ex);
             }
         }
 
