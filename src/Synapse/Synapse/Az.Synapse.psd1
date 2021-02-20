@@ -166,7 +166,7 @@ CmdletsToExport = 'Get-AzSynapseSparkJob', 'Stop-AzSynapseSparkJob',
                'Get-AzSynapseDataFlow', 'Remove-AzSynapseDataFlow', 
                'Get-AzSynapseSqlPoolVulnerabilityAssessmentScanRecord', 
                'Convert-AzSynapseSqlPoolVulnerabilityAssessmentScan', 
-               'Start-AzSynapseSqlPoolVulnerabilityAssessmentScan'
+               'Start-AzSynapseSqlPoolVulnerabilityAssessmentScan',
                'New-AzSynapseWorkspaceKey', 'Get-AzSynapseWorkspaceKey',
                'Remove-AzSynapseWorkspaceKey', 'Update-AzSynapseWorkspaceKey',
                'New-AzSynapseManagedVirtualNetworkConfig',
