@@ -14,7 +14,7 @@ Updates a Synapse Analytics workspace.
 
 ### SetByNameParameterSet (Default)
 ```
-Update-AzSynapseWorkspace [-ResourceGroupName <String>] [-Name <String>] [-Tag <Hashtable>]
+Update-AzSynapseWorkspace [-ResourceGroupName <String>] -Name <String> [-Tag <Hashtable>]
  [-SqlAdministratorLoginPassword <SecureString>] [-ManagedVirtualNetwork <PSManagedVirtualNetworkSettings>]
  [-EncryptionKeyName <String>] [-AsJob] [-DefaultProfile <IAzureContextContainer>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
@@ -148,7 +148,7 @@ Type: System.String
 Parameter Sets: SetByNameParameterSet
 Aliases: WorkspaceName
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
