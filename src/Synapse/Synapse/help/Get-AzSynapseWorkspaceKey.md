@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-AzSynapseWorkspaceKey
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets a workspace key.
 
 ## SYNTAX
 
@@ -30,7 +30,7 @@ Get-AzSynapseWorkspaceKey -ResourceId <String> [-DefaultProfile <IAzureContextCo
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The **Get-AzSynapseWorkspaceKey** cmdlet gets a workspace key.
 
 ## EXAMPLES
 
