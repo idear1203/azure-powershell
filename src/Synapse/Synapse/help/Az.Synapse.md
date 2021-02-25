@@ -138,7 +138,7 @@ Gets the TDE state for a SQL pool.
 Gets the vulnerability assessment rule baseline.
 
 ### [Get-AzSynapseSqlPoolVulnerabilityAssessmentScanRecord](Get-AzSynapseSqlPoolVulnerabilityAssessmentScanRecord.md)
-{{ Fill in the Synopsis }}
+Gets a Synapse Analytics SQL pool vulnerability assessment scan record.
 
 ### [Get-AzSynapseSqlPoolVulnerabilityAssessmentSetting](Get-AzSynapseSqlPoolVulnerabilityAssessmentSetting.md)
 Gets the vulnerability assessment settings of a SQL pool.

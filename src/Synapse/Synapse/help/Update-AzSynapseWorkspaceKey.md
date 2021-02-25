@@ -60,10 +60,10 @@ This command activates a workspace key under an Azure Synapse Analytics workspac
 
 ### Example 3
 ```powershell
-PS C:\> Remove-AzSynapseWorkspaceKey -ResourceId /subscriptions/21686af7-58ec-4f4d-9c68-f431f4db4edd/resourceGroups/ContosoResourceGroup/providers/Microsoft.Synapse/workspaces/ContosoWorkspace/keys/ContosoKeyName
+PS C:\> Update-AzSynapseWorkspaceKey -ResourceId /subscriptions/21686af7-58ec-4f4d-9c68-f431f4db4edd/resourceGroups/ContosoResourceGroup/providers/Microsoft.Synapse/workspaces/ContosoWorkspace/keys/ContosoKeyName
 ```
 
-This command deletes an Azure Synapse Analytics workspace key through pipeline with the specified resource ID.
+This command activates an Azure Synapse Analytics workspace key through pipeline with the specified resource ID.
 
 ## PARAMETERS
 
